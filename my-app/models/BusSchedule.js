@@ -24,6 +24,10 @@ const BusScheduleSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  lineNumber: {
+    type: Number,
+    required: true,
+  },
   route: {
     type: String,
     required: true,
@@ -32,12 +36,16 @@ const BusScheduleSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  schedule: [ScheduleSchema],
-  stop: String,
+  stops: [
+    {
+      stop: String,
+      schedule: [ScheduleSchema],
+    },
+  ],
 });
 
 const BusSchedule =
   mongoose.models.BusSchedule ||
   mongoose.model("BusSchedule", BusScheduleSchema);
 
-module.exports = BusSchedule;
+export default BusSchedule;
