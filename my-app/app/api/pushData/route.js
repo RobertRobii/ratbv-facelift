@@ -21,8 +21,6 @@ export async function POST(request) {
       }
     }
 
-    // console.log("Baza de date a fost inițializată cu succes!");
-
     return NextResponse.json({ success: true });
   } catch (error) {
     console.log(error);

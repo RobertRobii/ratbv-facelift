@@ -45,21 +45,21 @@ const Line = ({ params }) => {
 
   const lineNumber = params.lineNumber[0];
 
-  // useEffect(() => {
-  //   const getLineData = async () => {
-  //     const res = await fetch("/api/getLineData/");
-  //     try {
-  //       if (res.ok) {
-  //         const data = await res.json();
-  //         setLineData(data);
-  //       }
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
+  useEffect(() => {
+    const getLineData = async () => {
+      const res = await fetch("/api/getLineData/");
+      try {
+        if (res.ok) {
+          const data = await res.json();
+          setLineData(data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  //   getLineData();
-  // }, []);
+    getLineData();
+  }, []);
 
   useEffect(() => {
     const pushData = async () => {
@@ -86,29 +86,75 @@ const Line = ({ params }) => {
 
   console.log(lineData.data ? lineData.data[0] : "Data is not yet available");
 
+  function formatDate(isoString) {
+    let date = new Date(isoString);
+    let day = ("0" + date.getDate()).slice(-2);
+    let month = ("0" + (date.getMonth() + 1)).slice(-2);
+    let year = date.getFullYear();
+    return `${day}.${month}.${year}`;
+  }
+
   return (
     <div>
       <h1>Line {lineNumber}</h1>
+      <h1>
+        Valid from:{" "}
+        {lineData.data && lineData.data[0]
+          ? formatDate(lineData.data[0].validFrom)
+          : "Loading..."}
+      </h1>
       <h1>
         Route:{" "}
         {lineData.data && lineData.data[0]
           ? lineData.data[0].route
           : "Loading..."}
       </h1>
-      <h1 className="font-bold">Schedule</h1>
-      {lineData.data &&
-        lineData.data[0] &&
-        lineData.data[0].schedule.map((item, index) => (
-          <div key={index}>
-            <h2>{item.day}</h2>
-            {item.departures.map((departure, i) => (
-              <div key={i}>
-                <h3>Hour: {departure.hour}</h3>
-                <h4>Minutes: {departure.minutes.join(", ")}</h4>
-              </div>
-            ))}
-          </div>
-        ))}
+      <h1>
+        Stop:{" "}
+        {lineData.data && lineData.data[0]
+          ? lineData.data[0].stops[0].stop
+          : "Loading..."}
+      </h1>
+      <h1>
+        Schedule:{" "}
+        {lineData.data && lineData.data[0]
+          ? lineData.data[0].stops[0].schedule[0].day
+          : "Loading..."}
+      </h1>
+      <h1>
+        Departures:{" "}
+        {lineData.data && lineData.data[0]
+          ? lineData.data[0].stops[0].schedule[0].departures.map(
+              (departure, index) => {
+                return (
+                  <div key={index}>
+                    {departure.hour}: {departure.minutes.join(", ")}
+                  </div>
+                );
+              }
+            )
+          : "Loading..."}
+      </h1>
+      <h1>
+        Schedule:{" "}
+        {lineData.data && lineData.data[0]
+          ? lineData.data[0].stops[0].schedule[1].day
+          : "Loading..."}
+      </h1>
+      <h1>
+        Departures:{" "}
+        {lineData.data && lineData.data[0]
+          ? lineData.data[0].stops[0].schedule[1].departures.map(
+              (departure, index) => {
+                return (
+                  <div key={index}>
+                    {departure.hour}: {departure.minutes.join(", ")}
+                  </div>
+                );
+              }
+            )
+          : "Loading..."}
+      </h1>
     </div>
   );
 };
