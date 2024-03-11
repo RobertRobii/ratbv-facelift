@@ -47,12 +47,12 @@ const Line = ({ params }) => {
     pushData();
   }, []);
 
-  console.log(lineData.data ? lineData.data : "Data is not yet available");
+  // console.log(lineData.data ? lineData.data : "Data is not yet available");
 
   const lineObject =
     lineData.data &&
     lineData.data.find((line) => line.lineNumber === parseInt(lineNumber));
-  console.log(lineObject);
+  // console.log(lineObject);
 
   const formatDate = function (isoString) {
     let date = new Date(isoString);
