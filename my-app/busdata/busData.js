@@ -66,8 +66,8 @@ export const busData = [
           {
             day: "Luni - Vineri",
             departures: [
-              { hour: 5, minutes: [20, 35, 55] },
-              { hour: 6, minutes: [10, 20, 29, 38, 47, 56] },
+              { hour: 5, minutes: [22, 37, 57] },
+              { hour: 6, minutes: [12, 22, 21, 40, 49, 58] },
               { hour: 7, minutes: [5, 14, 23, 32, 41, 50, 59] },
               { hour: 8, minutes: [8, 17, 26, 35, 45] },
               { hour: 9, minutes: [2, 19, 35, 45] },
@@ -92,7 +92,7 @@ export const busData = [
             day: "Sambata - Duminica",
             departures: [
               { hour: 5, minutes: [] },
-              { hour: 6, minutes: [30, 47] },
+              { hour: 6, minutes: [32, 49] },
               { hour: 7, minutes: [3, 20, 37, 53] },
               { hour: 8, minutes: [10, 27, 43] },
               { hour: 9, minutes: [0, 17, 33, 55] },

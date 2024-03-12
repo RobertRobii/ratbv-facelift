@@ -7,7 +7,7 @@ import { busData } from "@/busdata/busData";
 import DesktopTable from "@/app/components/DesktopTable";
 import MobileTable from "@/app/components/MobileTable";
 
-import { motion } from "framer-motion";
+import Image from "next/image";
 
 const Line = ({ params }) => {
   const [lineData, setLineData] = useState({});
@@ -32,35 +32,35 @@ const Line = ({ params }) => {
     getLineData();
   }, [lineNumber]);
 
-  // useEffect(() => {
-  //   const pushData = async () => {
-  //     const res = await fetch("/api/pushData/", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         data: busData,
-  //       }),
-  //     });
-  //     try {
-  //       if (res.ok) {
-  //         console.log("Data sent successfully");
-  //       }
-  //     } catch (error) {
-  //       console.log("Error while sending data:", error);
-  //     }
-  //   };
+  useEffect(() => {
+    const pushData = async () => {
+      const res = await fetch("/api/pushData/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          data: busData,
+        }),
+      });
+      try {
+        if (res.ok) {
+          console.log("Data sent successfully");
+        }
+      } catch (error) {
+        console.log("Error while sending data:", error);
+      }
+    };
 
-  //   pushData();
-  // }, []);
+    pushData();
+  }, []);
 
   // console.log(lineData.data ? lineData.data : "Data is not yet available");
 
   const lineObject =
     lineData.data &&
     lineData.data.find((line) => line.lineNumber === parseInt(lineNumber));
-  // console.log(lineObject);
+  console.log(lineObject);
 
   useEffect(() => {
     const handleResize = () => {
@@ -95,6 +95,18 @@ const Line = ({ params }) => {
 
   const firstStopRef = useRef(null);
 
+  const [currentStation, setCurrentStation] = useState(null);
+  const [selectedStationData, setSelectedStationData] = useState(
+    lineObject && lineObject.stops[0].stop
+  );
+
+  useEffect(() => {
+    if (lineObject && lineObject.stops && lineObject.stops.length > 0) {
+      setCurrentStation(lineObject.stops[0].stop);
+      setSelectedStationData(lineObject.stops[0]);
+    }
+  }, [lineObject]);
+
   return (
     <section className="container mx-auto">
       <div className="w-full bg-accent rounded-lg flex items-center justify-center h-20 text-xl xl:text-3xl text-white font-bold mb-10">
@@ -112,6 +124,8 @@ const Line = ({ params }) => {
                 key={index}
                 className="text-gray-700 cursor-pointer hover:text-accent transition-all duration-200"
                 onClick={(e) => {
+                  setCurrentStation(stop.stop);
+                  setSelectedStationData(stop);
                   const rect = e.target.getBoundingClientRect();
                   console.log(`Pozitia la stanga pe pagina: ${rect.left}`);
                   const busElement = document.getElementById("bus");
@@ -131,11 +145,15 @@ const Line = ({ params }) => {
           id="bus"
           style={{
             position: "absolute",
-            // left: "0px",
             transition: "left 0.5s ease-in-out",
           }}
         >
-          BUS
+          <Image
+            src="/bus-icon.png"
+            alt="Bus icon"
+            width={50}
+            height={50}
+          ></Image>
         </p>
       </div>
 
@@ -145,14 +163,17 @@ const Line = ({ params }) => {
           {lineObject ? formatDate(lineObject.validFrom) : "Loading..."}
         </p>
         <p className="text-gray-500 text-lg xl:text-2xl">
-          Statia: {lineObject ? lineObject.stops[0].stop : "Loading..."}
+          Statia: {lineObject ? currentStation : "Loading..."}
         </p>
       </div>
 
       {isMobile ? (
         <MobileTable lineObject={lineObject} />
       ) : (
-        <DesktopTable lineObject={lineObject} />
+        <DesktopTable
+          lineObject={lineObject}
+          selectedStationData={selectedStationData}
+        />
       )}
     </section>
   );
