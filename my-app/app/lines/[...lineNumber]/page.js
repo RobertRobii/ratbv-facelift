@@ -2,9 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { busData } from "@/busdata/busData";
+import DesktopTable from "@/app/components/DesktopTable";
+import MobileTable from "@/app/components/MobileTable";
 
 const Line = ({ params }) => {
   const [lineData, setLineData] = useState({});
+  const [width, setWidth] = useState(window.innerWidth);
 
   const lineNumber = params.lineNumber[0];
 
@@ -54,6 +57,20 @@ const Line = ({ params }) => {
     lineData.data.find((line) => line.lineNumber === parseInt(lineNumber));
   // console.log(lineObject);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const isMobile = width <= 768;
+
   const formatDate = function (isoString) {
     let date = new Date(isoString);
     let day = ("0" + date.getDate()).slice(-2);
@@ -63,51 +80,30 @@ const Line = ({ params }) => {
   };
 
   return (
-    <div>
-      <h1>Line {lineNumber}</h1>
-      <h1>
-        Valid from:{" "}
-        {lineObject ? formatDate(lineObject.validFrom) : "Loading..."}
-      </h1>
-      <h1>Route: {lineObject ? lineObject.route : "Loading..."}</h1>
-      <h1>Stop: {lineObject ? lineObject.stops[0].stop : "Loading..."}</h1>
-      <h1>
-        Schedule:{" "}
-        {lineObject ? lineObject.stops[0].schedule[0].day : "Loading..."}
-      </h1>
-      <h1>
-        Departures:{" "}
-        {lineObject
-          ? lineObject.stops[0].schedule[0].departures.map(
-              (departure, index) => {
-                return (
-                  <div key={index}>
-                    {departure.hour}: {departure.minutes.join(", ")}
-                  </div>
-                );
-              }
-            )
-          : "Loading..."}
-      </h1>
-      <h1>
-        Schedule:{" "}
-        {lineObject ? lineObject.stops[0].schedule[1].day : "Loading..."}
-      </h1>
-      <h1>
-        Departures:{" "}
-        {lineObject
-          ? lineObject.stops[0].schedule[1].departures.map(
-              (departure, index) => {
-                return (
-                  <div key={index}>
-                    {departure.hour}: {departure.minutes.join(", ")}
-                  </div>
-                );
-              }
-            )
-          : "Loading..."}
-      </h1>
-    </div>
+    <section className="container mx-auto">
+      <div className="w-full bg-accent rounded-lg flex items-center justify-center h-20 text-xl xl:text-3xl text-white font-bold mb-10">
+        <p className="mr-6 xl:mr-10  bg-white text-accent w-10 text-center rounded-lg">
+          {lineNumber}
+        </p>
+        <h1>{lineObject ? lineObject.route : "Loading..."}</h1>
+      </div>
+
+      <div className="flex justify-between items-center">
+        <p className="text-gray-500">
+          Valabil din:{" "}
+          {lineObject ? formatDate(lineObject.validFrom) : "Loading..."}
+        </p>
+        <p className="text-gray-500 text-lg xl:text-2xl">
+          Statia: {lineObject ? lineObject.stops[0].stop : "Loading..."}
+        </p>
+      </div>
+
+      {isMobile ? (
+        <MobileTable lineObject={lineObject} />
+      ) : (
+        <DesktopTable lineObject={lineObject} />
+      )}
+    </section>
   );
 };
 
