@@ -115,6 +115,33 @@ export const busData = [
           },
         ],
       },
+      {
+        stop: "Autogara 3",
+      },
+      {
+        stop: "Vlahuta",
+      },
+      {
+        stop: "IUS",
+      },
+      {
+        stop: "CEC",
+      },
+      {
+        stop: "Liceul Mesota",
+      },
+      {
+        stop: "Camera de Comert",
+      },
+      {
+        stop: "Sanitas",
+      },
+      {
+        stop: "Primarie",
+      },
+      {
+        stop: "Livada Postei",
+      },
       // Alte stații
     ],
   },

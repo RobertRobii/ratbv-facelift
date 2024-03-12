@@ -57,13 +57,17 @@ const DesktopTable = ({ lineObject }) => {
                                   {departure.hour.toString().padStart(2, "0")}
                                 </div>
                                 <div className="text-sm text-gray-500 flex">
-                                  {departure.minutes.map((minute, index) => {
-                                    return (
-                                      <p key={index} className="mr-4">
-                                        {minute.toString().padStart(2, "0")}
-                                      </p>
-                                    );
-                                  })}
+                                  {departure.minutes.length > 0 ? (
+                                    departure.minutes.map((minute, index) => {
+                                      return (
+                                        <p key={index} className="mr-4">
+                                          {minute.toString().padStart(2, "0")}
+                                        </p>
+                                      );
+                                    })
+                                  ) : (
+                                    <p>Nu circula</p>
+                                  )}
                                 </div>
                               </div>
                             );
@@ -82,13 +86,17 @@ const DesktopTable = ({ lineObject }) => {
                                   {departure.hour.toString().padStart(2, "0")}
                                 </div>
                                 <div className="text-sm text-gray-500 flex">
-                                  {departure.minutes.map((minute, index) => {
-                                    return (
-                                      <p key={index} className="mr-4">
-                                        {minute.toString().padStart(2, "0")}
-                                      </p>
-                                    );
-                                  })}
+                                  {departure.minutes.length > 0 ? (
+                                    departure.minutes.map((minute, index) => {
+                                      return (
+                                        <p key={index} className="mr-4">
+                                          {minute.toString().padStart(2, "0")}
+                                        </p>
+                                      );
+                                    })
+                                  ) : (
+                                    <p>Nu circula</p>
+                                  )}
                                 </div>
                               </div>
                             );
