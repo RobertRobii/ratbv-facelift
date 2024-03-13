@@ -60,7 +60,7 @@ const Line = ({ params }) => {
   const lineObject =
     lineData.data &&
     lineData.data.find((line) => line.lineNumber === parseInt(lineNumber));
-  console.log(lineObject);
+  // console.log(lineObject);
 
   useEffect(() => {
     const handleResize = () => {
@@ -76,12 +76,17 @@ const Line = ({ params }) => {
 
   const isMobile = width <= 768;
 
+  const firstStopRef = useRef(null);
+
   useEffect(() => {
     if (firstStopRef.current) {
       const rect = firstStopRef.current.getBoundingClientRect();
+      const centerX = rect.width / 2;
       const busElement = document.getElementById("bus");
       busElement.style.position = "absolute";
-      busElement.style.left = `${rect.left}px`;
+      busElement.style.left = `${rect.left + centerX - 25}px`; // Adăugați centerX la rect.left
+      busElement.style.top = `${rect.top}px`;
+      busElement.style.marginTop = "15px";
     }
   }, [lineObject, width]);
 
@@ -92,8 +97,6 @@ const Line = ({ params }) => {
     let year = date.getFullYear();
     return `${day}.${month}.${year}`;
   };
-
-  const firstStopRef = useRef(null);
 
   const [currentStation, setCurrentStation] = useState(null);
   const [selectedStationData, setSelectedStationData] = useState(
@@ -117,7 +120,12 @@ const Line = ({ params }) => {
       </div>
 
       <div className="hidden xl:block">
-        <div className="flex justify-between items-center">
+        <div
+          className={
+            "flex justify-between items-center gap-x-[50px] gap-y-[60px] " +
+            (lineObject && lineObject.stops.length > 11 ? "flex-wrap" : "")
+          }
+        >
           {lineObject &&
             lineObject.stops.map((stop, index) => {
               return (
@@ -132,10 +140,19 @@ const Line = ({ params }) => {
                     setCurrentStation(stop.stop);
                     setSelectedStationData(stop);
                     const rect = e.target.getBoundingClientRect();
+                    console.log(`Lungimea elementului: ${rect.width}`);
+                    const centerX = rect.width / 2;
+                    console.log(`Centrul pe axa x al stației: ${centerX}`);
                     console.log(`Pozitia la stanga pe pagina: ${rect.left}`);
                     const busElement = document.getElementById("bus");
                     busElement.style.position = "absolute";
-                    busElement.style.left = `${rect.left}px`;
+                    busElement.style.left = `${rect.left + centerX - 25}px`;
+
+                    if (lineObject && lineObject.stops.length > 11) {
+                      // console.log(`Pozitia de sus pe pagina: ${rect.top}`);
+                      busElement.style.top = `${rect.top}px`;
+                      busElement.style.marginTop = "15px";
+                    }
                   }}
                   ref={index === 0 ? firstStopRef : null}
                 >
@@ -146,28 +163,37 @@ const Line = ({ params }) => {
         </div>
 
         <div className="h-[50px] flex items-center mb-4">
-          <p
+          <div
             id="bus"
             style={{
               position: "absolute",
-              transition: "left 0.5s ease-in-out",
+              transition: "left 0.5s ease-in-out, top 0.5s ease-in-out",
             }}
           >
-            <Image
-              src="/bus-icon.png"
-              alt="Bus icon"
-              width={50}
-              height={50}
-            ></Image>
-          </p>
+            <div className="flex flex-col items-center">
+              <Image
+                className="my-2"
+                src="/uparrow-icon.svg"
+                alt="Up arrow icon"
+                width={15}
+                height={15}
+              ></Image>
+              <Image
+                src="/bus-icon.png"
+                alt="Bus icon"
+                width={50}
+                height={50}
+              ></Image>
+            </div>
+          </div>
         </div>
       </div>
 
       <div className="flex justify-between items-center">
-        <p className="text-gray-500 text-lg xl:text-2xl">
+        <p className="text-gray-700 text-lg xl:text-2xl">
           Statia: {lineObject ? currentStation : "Loading..."}
         </p>
-        <p className="text-gray-500">
+        <p className="text-gray-700">
           Valabil din:{" "}
           {lineObject ? formatDate(lineObject.validFrom) : "Loading..."}
         </p>
@@ -181,6 +207,11 @@ const Line = ({ params }) => {
           selectedStationData={selectedStationData}
         />
       )}
+
+      <h1 className="my-6 text-2xl text-gray-700">
+        <span className="font-bold">Nota: </span>Respectarea orelor de trecere
+        poate fi influentata de conditiile de trafic!
+      </h1>
     </section>
   );
 };

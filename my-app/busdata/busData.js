@@ -681,5 +681,354 @@ export const busData = [
       // Alte stații
     ],
   },
+  {
+    _id: 5,
+    lineNumber: 5,
+    route: "Stadionul Municipal - Roman",
+    validFrom: new Date("2023-06-10"),
+    stops: [
+      {
+        stop: "Stadionul Municipal",
+        schedule: [
+          {
+            day: "Luni - Vineri",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+            ],
+          },
+          {
+            day: "Sambata - Duminica",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+              // Alte plecări
+            ],
+          },
+        ],
+      },
+      {
+        stop: "Biserica Bartolomeu",
+        schedule: [
+          {
+            day: "Luni - Vineri",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+            ],
+          },
+          {
+            day: "Sambata - Duminica",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+              // Alte plecări
+            ],
+          },
+        ],
+      },
+      {
+        stop: "Carierei",
+        schedule: [
+          {
+            day: "Luni - Vineri",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+            ],
+          },
+          {
+            day: "Sambata - Duminica",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+              // Alte plecări
+            ],
+          },
+        ],
+      },
+      {
+        stop: "Memorandului",
+        schedule: [
+          {
+            day: "Luni - Vineri",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+            ],
+          },
+          {
+            day: "Sambata - Duminica",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+              // Alte plecări
+            ],
+          },
+        ],
+      },
+      {
+        stop: "Bisericii Romane",
+        schedule: [
+          {
+            day: "Luni - Vineri",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+            ],
+          },
+          {
+            day: "Sambata - Duminica",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+              // Alte plecări
+            ],
+          },
+        ],
+      },
+      {
+        stop: "Astra",
+        schedule: [
+          {
+            day: "Luni - Vineri",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+            ],
+          },
+          {
+            day: "Sambata - Duminica",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+              // Alte plecări
+            ],
+          },
+        ],
+      },
+      {
+        stop: "Dramatic",
+        schedule: [
+          {
+            day: "Luni - Vineri",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+            ],
+          },
+          {
+            day: "Sambata - Duminica",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+              // Alte plecări
+            ],
+          },
+        ],
+      },
+      {
+        stop: "Patria",
+        schedule: [
+          {
+            day: "Luni - Vineri",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+            ],
+          },
+          {
+            day: "Sambata - Duminica",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+              // Alte plecări
+            ],
+          },
+        ],
+      },
+      {
+        stop: "Hidro A",
+        schedule: [
+          {
+            day: "Luni - Vineri",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+            ],
+          },
+          {
+            day: "Sambata - Duminica",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+              // Alte plecări
+            ],
+          },
+        ],
+      },
+      {
+        stop: "Hidro B",
+        schedule: [
+          {
+            day: "Luni - Vineri",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+            ],
+          },
+          {
+            day: "Sambata - Duminica",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+              // Alte plecări
+            ],
+          },
+        ],
+      },
+      {
+        stop: "Spitalul Judetean",
+        schedule: [
+          {
+            day: "Luni - Vineri",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+            ],
+          },
+          {
+            day: "Sambata - Duminica",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+              // Alte plecări
+            ],
+          },
+        ],
+      },
+      {
+        stop: "Liceul Informatica",
+        schedule: [
+          {
+            day: "Luni - Vineri",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+            ],
+          },
+          {
+            day: "Sambata - Duminica",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+              // Alte plecări
+            ],
+          },
+        ],
+      },
+      {
+        stop: "Berzei",
+        schedule: [
+          {
+            day: "Luni - Vineri",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+            ],
+          },
+          {
+            day: "Sambata - Duminica",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+              // Alte plecări
+            ],
+          },
+        ],
+      },
+      {
+        stop: "Pompieri",
+        schedule: [
+          {
+            day: "Luni - Vineri",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+            ],
+          },
+          {
+            day: "Sambata - Duminica",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+              // Alte plecări
+            ],
+          },
+        ],
+      },
+      {
+        stop: "Metrom",
+        schedule: [
+          {
+            day: "Luni - Vineri",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+            ],
+          },
+          {
+            day: "Sambata - Duminica",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+              // Alte plecări
+            ],
+          },
+        ],
+      },
+      {
+        stop: "Poienelor",
+        schedule: [
+          {
+            day: "Luni - Vineri",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+            ],
+          },
+          {
+            day: "Sambata - Duminica",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+              // Alte plecări
+            ],
+          },
+        ],
+      },
+      {
+        stop: "Roman",
+        schedule: [
+          {
+            day: "Luni - Vineri",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+            ],
+          },
+          {
+            day: "Sambata - Duminica",
+            departures: [
+              { hour: 8, minutes: [7, 21, 34] },
+              // Alte plecări
+              // Alte plecări
+            ],
+          },
+        ],
+      },
+      // Alte stații
+    ],
+  },
   // Alte linii de autobuz
 ];
