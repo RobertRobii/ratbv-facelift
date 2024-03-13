@@ -36,12 +36,20 @@ const BusScheduleSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  stops: [
-    {
-      stop: String,
-      schedule: [ScheduleSchema],
-    },
-  ],
+  way: {
+    stopsTo: [
+      {
+        stop: String,
+        schedule: [ScheduleSchema],
+      },
+    ],
+    stopsFrom: [
+      {
+        stop: String,
+        schedule: [ScheduleSchema],
+      },
+    ],
+  },
 });
 
 const BusSchedule =

@@ -60,7 +60,7 @@ const Line = ({ params }) => {
   const lineObject =
     lineData.data &&
     lineData.data.find((line) => line.lineNumber === parseInt(lineNumber));
-  // console.log(lineObject);
+  console.log(lineObject);
 
   useEffect(() => {
     const handleResize = () => {
@@ -100,13 +100,17 @@ const Line = ({ params }) => {
 
   const [currentStation, setCurrentStation] = useState(null);
   const [selectedStationData, setSelectedStationData] = useState(
-    lineObject && lineObject.stops[0].stop
+    lineObject && lineObject.way.stopsTo[0].stop
   );
 
   useEffect(() => {
-    if (lineObject && lineObject.stops && lineObject.stops.length > 0) {
-      setCurrentStation(lineObject.stops[0].stop);
-      setSelectedStationData(lineObject.stops[0]);
+    if (
+      lineObject &&
+      lineObject.way.stopsTo &&
+      lineObject.way.stopsTo.length > 0
+    ) {
+      setCurrentStation(lineObject.way.stopsTo[0].stop);
+      setSelectedStationData(lineObject.way.stopsTo[0]);
     }
   }, [lineObject]);
 
@@ -135,11 +139,13 @@ const Line = ({ params }) => {
         <div
           className={
             "flex justify-between items-center px-2 gap-x-[50px] gap-y-[60px] " +
-            (lineObject && lineObject.stops.length > 11 ? "flex-wrap" : "")
+            (lineObject && lineObject.way.stopsTo.length > 11
+              ? "flex-wrap"
+              : "")
           }
         >
           {lineObject &&
-            lineObject.stops.map((stop, index) => {
+            lineObject.way.stopsTo.map((stop, index) => {
               return (
                 <p
                   key={index}
@@ -160,7 +166,7 @@ const Line = ({ params }) => {
                     busElement.style.position = "absolute";
                     busElement.style.left = `${rect.left + centerX - 25}px`;
 
-                    if (lineObject && lineObject.stops.length > 11) {
+                    if (lineObject && lineObject.way.stopsTo.length > 11) {
                       // console.log(`Pozitia de sus pe pagina: ${rect.top}`);
                       busElement.style.top = `${rect.top}px`;
                       busElement.style.marginTop = "15px";
