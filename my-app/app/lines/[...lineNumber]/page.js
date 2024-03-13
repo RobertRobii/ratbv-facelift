@@ -9,6 +9,9 @@ import MobileTable from "@/app/components/MobileTable";
 
 import Image from "next/image";
 
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+
 const Line = ({ params }) => {
   const [lineData, setLineData] = useState({});
 
@@ -144,8 +147,55 @@ const Line = ({ params }) => {
     setRouteInfo(isReverse ? lineObject.routeTo : lineObject.routeFrom);
   };
 
+  // const generatePDF = async () => {
+  //   try {
+  //     const pdf = new jsPDF();
+  //     const table = document.getElementById("pdf-table");
+
+  //     if (!lineObject || !selectedStationData) {
+  //       console.log("Data is not yet available. Please wait for it to load.");
+  //       return;
+  //     }
+
+  //     const canvas = await html2canvas(table);
+  //     const imgData = canvas.toDataURL("image/png");
+
+  //     pdf.addImage(imgData, "PNG", 10, 10, 190, 0);
+  //     pdf.save("table.pdf");
+  //   } catch (error) {
+  //     console.error("Error generating PDF:", error);
+  //   }
+  // };
+
+  const generatePDF = async () => {
+    try {
+      const pdf = new jsPDF();
+
+      if (!lineObject || !selectedStationData) {
+        console.log("Data is not yet available. Please wait for it to load.");
+        return;
+      }
+
+      const page = document.getElementById("pdf-page");
+      const canvas = await html2canvas(page, { scrollY: -window.scrollY });
+      const imgData = canvas.toDataURL("image/png");
+
+      const imgWidth = canvas.width;
+      const imgHeight = canvas.height;
+
+      // Calculate the width and height of the image in the PDF, preserving aspect ratio
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgHeight * pdfWidth) / imgWidth;
+
+      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+      pdf.save("page.pdf");
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+    }
+  };
+
   return (
-    <section className="container mx-auto">
+    <section id="pdf-page" className="container mx-auto">
       <div className="w-full bg-accent rounded-lg flex items-center justify-center h-20 text-xl xl:text-3xl text-white font-bold mb-10">
         <p className="mr-6 xl:mr-10  bg-white text-accent px-4 py-2 text-center rounded-xl">
           {lineNumber}
@@ -160,7 +210,10 @@ const Line = ({ params }) => {
         >
           {isReverse ? "Vezi cursa directa" : "Vezi cursa inversa"}
         </button>
-        <button className="text-accent bg-transparent border border-accent px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition-all duration-200">
+        <button
+          onClick={generatePDF}
+          className="text-accent bg-transparent border border-accent px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition-all duration-200"
+        >
           Salvare tabel format PDF
         </button>
       </div>
@@ -248,6 +301,7 @@ const Line = ({ params }) => {
         <DesktopTable
           lineObject={lineObject}
           selectedStationData={selectedStationData}
+          tableId="pdf-table"
         />
       )}
 
