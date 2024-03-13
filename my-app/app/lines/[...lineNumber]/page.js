@@ -119,10 +119,22 @@ const Line = ({ params }) => {
         <h1>{lineObject ? lineObject.route : "Loading..."}</h1>
       </div>
 
+      <div className="flex justify-between mb-10">
+        <button
+          onClick={() => console.log("clicked")}
+          className="text-accent bg-transparent border border-accent px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition-all duration-200"
+        >
+          Vezi cursa inversa
+        </button>
+        <button className="text-accent bg-transparent border border-accent px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition-all duration-200">
+          Salvare tabel format PDF
+        </button>
+      </div>
+
       <div className="hidden xl:block">
         <div
           className={
-            "flex justify-between items-center gap-x-[50px] gap-y-[60px] " +
+            "flex justify-between items-center px-2 gap-x-[50px] gap-y-[60px] " +
             (lineObject && lineObject.stops.length > 11 ? "flex-wrap" : "")
           }
         >
@@ -140,10 +152,10 @@ const Line = ({ params }) => {
                     setCurrentStation(stop.stop);
                     setSelectedStationData(stop);
                     const rect = e.target.getBoundingClientRect();
-                    console.log(`Lungimea elementului: ${rect.width}`);
+                    // console.log(`Lungimea elementului: ${rect.width}`);
                     const centerX = rect.width / 2;
-                    console.log(`Centrul pe axa x al stației: ${centerX}`);
-                    console.log(`Pozitia la stanga pe pagina: ${rect.left}`);
+                    // console.log(`Centrul pe axa x al stației: ${centerX}`);
+                    // console.log(`Pozitia la stanga pe pagina: ${rect.left}`);
                     const busElement = document.getElementById("bus");
                     busElement.style.position = "absolute";
                     busElement.style.left = `${rect.left + centerX - 25}px`;

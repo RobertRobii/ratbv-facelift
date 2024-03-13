@@ -1,5 +1,3 @@
-import React from "react";
-
 const DesktopTable = ({ lineObject, selectedStationData }) => {
   return (
     <section className="flex flex-col">
