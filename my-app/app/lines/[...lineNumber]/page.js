@@ -32,28 +32,28 @@ const Line = ({ params }) => {
     getLineData();
   }, [lineNumber]);
 
-  useEffect(() => {
-    const pushData = async () => {
-      const res = await fetch("/api/pushData/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          data: busData,
-        }),
-      });
-      try {
-        if (res.ok) {
-          console.log("Data sent successfully");
-        }
-      } catch (error) {
-        console.log("Error while sending data:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const pushData = async () => {
+  //     const res = await fetch("/api/pushData/", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         data: busData,
+  //       }),
+  //     });
+  //     try {
+  //       if (res.ok) {
+  //         console.log("Data sent successfully");
+  //       }
+  //     } catch (error) {
+  //       console.log("Error while sending data:", error);
+  //     }
+  //   };
 
-    pushData();
-  }, []);
+  //   pushData();
+  // }, []);
 
   // console.log(lineData.data ? lineData.data : "Data is not yet available");
 
@@ -116,54 +116,60 @@ const Line = ({ params }) => {
         <h1>{lineObject ? lineObject.route : "Loading..."}</h1>
       </div>
 
-      <div className="flex justify-between items-center">
-        {lineObject &&
-          lineObject.stops.map((stop, index) => {
-            return (
-              <p
-                key={index}
-                className="text-gray-700 cursor-pointer hover:text-accent transition-all duration-200"
-                onClick={(e) => {
-                  setCurrentStation(stop.stop);
-                  setSelectedStationData(stop);
-                  const rect = e.target.getBoundingClientRect();
-                  console.log(`Pozitia la stanga pe pagina: ${rect.left}`);
-                  const busElement = document.getElementById("bus");
-                  busElement.style.position = "absolute";
-                  busElement.style.left = `${rect.left}px`;
-                }}
-                ref={index === 0 ? firstStopRef : null}
-              >
-                {stop.stop}
-              </p>
-            );
-          })}
+      <div className="hidden xl:block">
+        <div className="flex justify-between items-center">
+          {lineObject &&
+            lineObject.stops.map((stop, index) => {
+              return (
+                <p
+                  key={index}
+                  className={
+                    stop.stop === currentStation
+                      ? "text-accent cursor-pointer hover:text-accent transition-all duration-200"
+                      : "text-gray-700 cursor-pointer hover:text-accent transition-all duration-200"
+                  }
+                  onClick={(e) => {
+                    setCurrentStation(stop.stop);
+                    setSelectedStationData(stop);
+                    const rect = e.target.getBoundingClientRect();
+                    console.log(`Pozitia la stanga pe pagina: ${rect.left}`);
+                    const busElement = document.getElementById("bus");
+                    busElement.style.position = "absolute";
+                    busElement.style.left = `${rect.left}px`;
+                  }}
+                  ref={index === 0 ? firstStopRef : null}
+                >
+                  {stop.stop}
+                </p>
+              );
+            })}
+        </div>
+
+        <div className="h-[50px] flex items-center mb-4">
+          <p
+            id="bus"
+            style={{
+              position: "absolute",
+              transition: "left 0.5s ease-in-out",
+            }}
+          >
+            <Image
+              src="/bus-icon.png"
+              alt="Bus icon"
+              width={50}
+              height={50}
+            ></Image>
+          </p>
+        </div>
       </div>
 
-      <div className="h-[50px] flex items-center">
-        <p
-          id="bus"
-          style={{
-            position: "absolute",
-            transition: "left 0.5s ease-in-out",
-          }}
-        >
-          <Image
-            src="/bus-icon.png"
-            alt="Bus icon"
-            width={50}
-            height={50}
-          ></Image>
+      <div className="flex justify-between items-center">
+        <p className="text-gray-500 text-lg xl:text-2xl">
+          Statia: {lineObject ? currentStation : "Loading..."}
         </p>
-      </div>
-
-      <div className="flex justify-between items-center">
         <p className="text-gray-500">
           Valabil din:{" "}
           {lineObject ? formatDate(lineObject.validFrom) : "Loading..."}
-        </p>
-        <p className="text-gray-500 text-lg xl:text-2xl">
-          Statia: {lineObject ? currentStation : "Loading..."}
         </p>
       </div>
 

@@ -8,9 +8,44 @@ const DesktopTable = ({ lineObject, selectedStationData }) => {
           <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
-                {/* ...Header code remains the same... */}
+                <tr>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-r"
+                  >
+                    {lineObject
+                      ? lineObject.stops[0].schedule[0].day
+                      : "Loading..."}
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-r"
+                  >
+                    {lineObject
+                      ? lineObject.stops[0].schedule[1].day
+                      : "Loading..."}
+                  </th>
+                </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td className="text-center py-4 whitespace-nowrap border-r">
+                    <div className="flex space-x-4">
+                      <div className="text-sm text-gray-900 border-r w-[50px]">
+                        Ora
+                      </div>
+                      <div className="text-sm text-gray-500">Minutul</div>
+                    </div>
+                  </td>
+                  <td className="text-center py-4 whitespace-nowrap border-r">
+                    <div className="flex space-x-4">
+                      <div className="text-sm text-gray-900 border-r w-[50px]">
+                        Ora
+                      </div>
+                      <div className="text-sm text-gray-500">Minutul</div>
+                    </div>
+                  </td>
+                </tr>
                 <tr>
                   <td className="text-center py-4 whitespace-nowrap border-r">
                     {selectedStationData
