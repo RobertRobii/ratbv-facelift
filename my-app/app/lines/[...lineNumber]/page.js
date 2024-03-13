@@ -60,7 +60,7 @@ const Line = ({ params }) => {
   const lineObject =
     lineData.data &&
     lineData.data.find((line) => line.lineNumber === parseInt(lineNumber));
-  console.log(lineObject);
+  // console.log(lineObject);
 
   useEffect(() => {
     const handleResize = () => {
@@ -76,6 +76,9 @@ const Line = ({ params }) => {
 
   const isMobile = width <= 768;
 
+  const [isReverse, setIsReverse] = useState(false);
+  const [stations, setStations] = useState([]);
+
   const firstStopRef = useRef(null);
 
   useEffect(() => {
@@ -84,11 +87,11 @@ const Line = ({ params }) => {
       const centerX = rect.width / 2;
       const busElement = document.getElementById("bus");
       busElement.style.position = "absolute";
-      busElement.style.left = `${rect.left + centerX - 25}px`; // Adăugați centerX la rect.left
+      busElement.style.left = `${rect.left + centerX - 25}px`;
       busElement.style.top = `${rect.top}px`;
       busElement.style.marginTop = "15px";
     }
-  }, [lineObject, width]);
+  }, [lineObject, width, stations]);
 
   const formatDate = function (isoString) {
     let date = new Date(isoString);
@@ -114,6 +117,24 @@ const Line = ({ params }) => {
     }
   }, [lineObject]);
 
+  useEffect(() => {
+    if (lineObject) {
+      setStations(
+        isReverse ? lineObject.way.stopsFrom : lineObject.way.stopsTo
+      );
+    }
+  }, [lineObject, isReverse]);
+
+  const toggleReverse = () => {
+    setIsReverse(!isReverse);
+    const reversedStations = isReverse
+      ? lineObject.way.stopsTo
+      : lineObject.way.stopsFrom;
+
+    setCurrentStation(reversedStations[0].stop);
+    setSelectedStationData(reversedStations[0]);
+  };
+
   return (
     <section className="container mx-auto">
       <div className="w-full bg-accent rounded-lg flex items-center justify-center h-20 text-xl xl:text-3xl text-white font-bold mb-10">
@@ -125,10 +146,10 @@ const Line = ({ params }) => {
 
       <div className="flex justify-between mb-10">
         <button
-          onClick={() => console.log("clicked")}
+          onClick={toggleReverse}
           className="text-accent bg-transparent border border-accent px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition-all duration-200"
         >
-          Vezi cursa inversa
+          {isReverse ? "Vezi cursa directa" : "Vezi cursa inversa"}
         </button>
         <button className="text-accent bg-transparent border border-accent px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition-all duration-200">
           Salvare tabel format PDF
@@ -139,13 +160,12 @@ const Line = ({ params }) => {
         <div
           className={
             "flex justify-between items-center px-2 gap-x-[50px] gap-y-[60px] " +
-            (lineObject && lineObject.way.stopsTo.length > 11
-              ? "flex-wrap"
-              : "")
+            (lineObject && stations && stations.length > 11 ? "flex-wrap" : "")
           }
         >
           {lineObject &&
-            lineObject.way.stopsTo.map((stop, index) => {
+            stations &&
+            stations.map((stop, index) => {
               return (
                 <p
                   key={index}
@@ -158,16 +178,12 @@ const Line = ({ params }) => {
                     setCurrentStation(stop.stop);
                     setSelectedStationData(stop);
                     const rect = e.target.getBoundingClientRect();
-                    // console.log(`Lungimea elementului: ${rect.width}`);
                     const centerX = rect.width / 2;
-                    // console.log(`Centrul pe axa x al stației: ${centerX}`);
-                    // console.log(`Pozitia la stanga pe pagina: ${rect.left}`);
                     const busElement = document.getElementById("bus");
                     busElement.style.position = "absolute";
                     busElement.style.left = `${rect.left + centerX - 25}px`;
 
-                    if (lineObject && lineObject.way.stopsTo.length > 11) {
-                      // console.log(`Pozitia de sus pe pagina: ${rect.top}`);
+                    if (lineObject && stations.length > 11) {
                       busElement.style.top = `${rect.top}px`;
                       busElement.style.marginTop = "15px";
                     }
