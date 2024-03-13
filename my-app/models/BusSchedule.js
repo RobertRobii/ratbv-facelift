@@ -28,7 +28,11 @@ const BusScheduleSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  route: {
+  routeTo: {
+    type: String,
+    required: true,
+  },
+  routeFrom: {
     type: String,
     required: true,
   },

@@ -2,7 +2,8 @@ export const busData = [
   {
     _id: 1,
     lineNumber: 1,
-    route: "Triaj - Livada Postei",
+    routeTo: "Triaj - Livada Postei",
+    routeFrom: "Livada Postei - Triaj",
     validFrom: new Date("2023-06-19"),
     way: {
       stopsTo: [
@@ -1226,7 +1227,8 @@ export const busData = [
   {
     _id: 2,
     lineNumber: 2,
-    route: "Rulemntul - Livada Postei",
+    routeTo: "Rulemntul - Livada Postei",
+    routeFrom: "Livada Postei - Rulemntul",
     validFrom: new Date("2020-08-12"),
     way: {
       stopsTo: [
@@ -1290,7 +1292,8 @@ export const busData = [
   {
     _id: 3,
     lineNumber: 3,
-    route: "Valea Cetatii - Stadionul Tineretului",
+    routeTo: "Valea Cetatii - Stadionul Tineretului",
+    routeFrom: "Stadionul Tineretului - Valea Cetatii",
     validFrom: new Date("2021-09-13"),
     way: {
       stopsTo: [
@@ -1354,7 +1357,8 @@ export const busData = [
   {
     _id: 5,
     lineNumber: 5,
-    route: "Stadionul Municipal - Roman",
+    routeTo: "Stadionul Municipal - Roman",
+    routeFrom: "Roman - Stadionul Municipal",
     validFrom: new Date("2023-06-10"),
     way: {
       stopsTo: [

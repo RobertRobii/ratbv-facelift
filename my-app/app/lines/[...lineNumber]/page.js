@@ -125,6 +125,14 @@ const Line = ({ params }) => {
     }
   }, [lineObject, isReverse]);
 
+  const [routeInfo, setRouteInfo] = useState("Loading...");
+
+  useEffect(() => {
+    if (lineObject) {
+      setRouteInfo(lineObject.routeTo);
+    }
+  }, [lineObject]);
+
   const toggleReverse = () => {
     setIsReverse(!isReverse);
     const reversedStations = isReverse
@@ -133,6 +141,7 @@ const Line = ({ params }) => {
 
     setCurrentStation(reversedStations[0].stop);
     setSelectedStationData(reversedStations[0]);
+    setRouteInfo(isReverse ? lineObject.routeTo : lineObject.routeFrom);
   };
 
   return (
@@ -141,7 +150,7 @@ const Line = ({ params }) => {
         <p className="mr-6 xl:mr-10  bg-white text-accent px-4 py-2 text-center rounded-xl">
           {lineNumber}
         </p>
-        <h1>{lineObject ? lineObject.route : "Loading..."}</h1>
+        <h1>{routeInfo}</h1>
       </div>
 
       <div className="flex justify-between mb-10">
