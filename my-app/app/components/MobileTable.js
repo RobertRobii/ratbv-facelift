@@ -1,6 +1,6 @@
 import React from "react";
 
-const MobileTable = ({ lineObject }) => {
+const MobileTable = ({ lineObject, selectedStationData }) => {
   return (
     <>
       <div className="flex flex-col">
@@ -15,7 +15,7 @@ const MobileTable = ({ lineObject }) => {
                       className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-r"
                     >
                       {lineObject
-                        ? lineObject.stops[0].schedule[0].day
+                        ? lineObject.way.stopsTo[0].schedule[0].day
                         : "Loading..."}
                     </th>
                   </tr>
@@ -33,8 +33,8 @@ const MobileTable = ({ lineObject }) => {
                   </tr>
                   <tr>
                     <td className="text-center py-4 whitespace-nowrap border-r">
-                      {lineObject
-                        ? lineObject.stops[0].schedule[0].departures.map(
+                      {selectedStationData
+                        ? selectedStationData.schedule[0].departures.map(
                             (departure, index) => {
                               return (
                                 <div
@@ -78,7 +78,9 @@ const MobileTable = ({ lineObject }) => {
               scope="col"
               className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              {lineObject ? lineObject.stops[0].schedule[1].day : "Loading..."}
+              {lineObject
+                ? lineObject.way.stopsTo[0].schedule[1].day
+                : "Loading..."}
             </th>
           </tr>
         </thead>
@@ -95,8 +97,8 @@ const MobileTable = ({ lineObject }) => {
           </tr>
           <tr>
             <td className="text-center py-4 whitespace-nowrap border-r">
-              {lineObject
-                ? lineObject.stops[0].schedule[1].departures.map(
+              {selectedStationData
+                ? selectedStationData.schedule[1].departures.map(
                     (departure, index) => {
                       return (
                         <div key={index} className="flex space-x-4 py-2">

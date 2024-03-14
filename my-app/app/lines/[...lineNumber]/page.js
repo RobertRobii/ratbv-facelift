@@ -9,9 +9,6 @@ import MobileTable from "@/app/components/MobileTable";
 
 import Image from "next/image";
 
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
-
 const Line = ({ params }) => {
   const [lineData, setLineData] = useState({});
 
@@ -147,73 +144,23 @@ const Line = ({ params }) => {
     setRouteInfo(isReverse ? lineObject.routeTo : lineObject.routeFrom);
   };
 
-  // const generatePDF = async () => {
-  //   try {
-  //     const pdf = new jsPDF();
-  //     const table = document.getElementById("pdf-table");
-
-  //     if (!lineObject || !selectedStationData) {
-  //       console.log("Data is not yet available. Please wait for it to load.");
-  //       return;
-  //     }
-
-  //     const canvas = await html2canvas(table);
-  //     const imgData = canvas.toDataURL("image/png");
-
-  //     pdf.addImage(imgData, "PNG", 10, 10, 190, 0);
-  //     pdf.save("table.pdf");
-  //   } catch (error) {
-  //     console.error("Error generating PDF:", error);
-  //   }
-  // };
-
-  const generatePDF = async () => {
-    try {
-      const pdf = new jsPDF();
-
-      if (!lineObject || !selectedStationData) {
-        console.log("Data is not yet available. Please wait for it to load.");
-        return;
-      }
-
-      const page = document.getElementById("pdf-page");
-      const canvas = await html2canvas(page, { scrollY: -window.scrollY });
-      const imgData = canvas.toDataURL("image/png");
-
-      const imgWidth = canvas.width;
-      const imgHeight = canvas.height;
-
-      // Calculate the width and height of the image in the PDF, preserving aspect ratio
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (imgHeight * pdfWidth) / imgWidth;
-
-      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-      pdf.save("page.pdf");
-    } catch (error) {
-      console.error("Error generating PDF:", error);
-    }
-  };
-
   return (
-    <section id="pdf-page" className="container mx-auto">
+    <section className="container mx-auto">
       <div className="w-full bg-accent rounded-lg flex items-center justify-center h-20 text-xl xl:text-3xl text-white font-bold mb-10">
-        <p className="mr-6 xl:mr-10  bg-white text-accent px-4 py-2 text-center rounded-xl">
+        <p className="mr-6 xl:mr-10 bg-white text-accent px-4 py-2 text-center rounded-xl">
           {lineNumber}
         </p>
         <h1>{routeInfo}</h1>
       </div>
 
-      <div className="flex justify-between mb-10">
+      <div className="flex flex-col xl:flex-row justify-center items-center xl:justify-between mb-6">
         <button
           onClick={toggleReverse}
-          className="text-accent bg-transparent border border-accent px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition-all duration-200"
+          className="text-accent bg-transparent border border-accent w-[220px] px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition-all duration-200 mb-6 xl:mb-0"
         >
           {isReverse ? "Vezi cursa directa" : "Vezi cursa inversa"}
         </button>
-        <button
-          onClick={generatePDF}
-          className="text-accent bg-transparent border border-accent px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition-all duration-200"
-        >
+        <button className="text-accent bg-transparent border border-accent w-[220px] px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition-all duration-200">
           Salvare tabel format PDF
         </button>
       </div>
@@ -285,6 +232,28 @@ const Line = ({ params }) => {
         </div>
       </div>
 
+      <div className="md:hidden mb-10 flex justify-center items-center">
+        <select
+          className="w-[220px] bg-accent border border-accent rounded-lg text-white focus:outline-none h-[40px] text-center"
+          onChange={(e) => {
+            const selectedStationName = e.target.value;
+            const selectedStation = stations.find(
+              (station) => station.stop === selectedStationName
+            );
+            setCurrentStation(selectedStationName);
+            setSelectedStationData(selectedStation);
+          }}
+        >
+          {lineObject &&
+            stations &&
+            stations.map((stop, index) => (
+              <option key={index} value={stop.stop}>
+                {stop.stop}
+              </option>
+            ))}
+        </select>
+      </div>
+
       <div className="flex justify-between items-center">
         <p className="text-gray-700 text-lg xl:text-2xl">
           Statia: {lineObject ? currentStation : "Loading..."}
@@ -296,16 +265,18 @@ const Line = ({ params }) => {
       </div>
 
       {isMobile ? (
-        <MobileTable lineObject={lineObject} />
+        <MobileTable
+          lineObject={lineObject}
+          selectedStationData={selectedStationData}
+        />
       ) : (
         <DesktopTable
           lineObject={lineObject}
           selectedStationData={selectedStationData}
-          tableId="pdf-table"
         />
       )}
 
-      <h1 className="my-6 text-2xl text-gray-700">
+      <h1 className="my-6 text-lg xl:text-2xl text-gray-700">
         <span className="font-bold">Nota: </span>Respectarea orelor de trecere
         poate fi influentata de conditiile de trafic!
       </h1>
