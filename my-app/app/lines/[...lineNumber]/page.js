@@ -166,41 +166,45 @@ const Line = ({ params }) => {
       </div>
 
       <div className="hidden xl:block">
-        <div
-          className={
-            "flex justify-between items-center px-2 gap-x-[50px] gap-y-[60px] " +
-            (lineObject && stations && stations.length > 11 ? "flex-wrap" : "")
-          }
-        >
+        <h1 className="text-center text-xl mb-6">Traseu:</h1>
+        <div className="flex justify-center items-center px-2 gap-x-[50px] gap-y-[60px] flex-wrap">
           {lineObject &&
             stations &&
             stations.map((stop, index) => {
               return (
-                <p
-                  key={index}
-                  className={
-                    stop.stop === currentStation
-                      ? "text-accent cursor-pointer hover:text-accent transition-all duration-200"
-                      : "text-gray-700 cursor-pointer hover:text-accent transition-all duration-200"
-                  }
-                  onClick={(e) => {
-                    setCurrentStation(stop.stop);
-                    setSelectedStationData(stop);
-                    const rect = e.target.getBoundingClientRect();
-                    const centerX = rect.width / 2;
-                    const busElement = document.getElementById("bus");
-                    busElement.style.position = "absolute";
-                    busElement.style.left = `${rect.left + centerX - 25}px`;
-
-                    if (lineObject && stations.length > 11) {
+                <div key={index} className="flex">
+                  <Image
+                    className="mr-2"
+                    src="/station-icon.svg"
+                    alt="Station icon"
+                    width={20}
+                    height={20}
+                  ></Image>
+                  <p
+                    className={
+                      stop.stop === currentStation
+                        ? "text-accent cursor-pointer hover:text-accent transition-all duration-200"
+                        : "text-gray-700 cursor-pointer hover:text-accent transition-all duration-200"
+                    }
+                    onClick={(e) => {
+                      setCurrentStation(stop.stop);
+                      setSelectedStationData(stop);
+                      const rect = e.target.getBoundingClientRect();
+                      const centerX = rect.width / 2;
+                      const busElement = document.getElementById("bus");
+                      busElement.style.position = "absolute";
+                      busElement.style.left = `${rect.left + centerX - 25}px`;
                       busElement.style.top = `${rect.top}px`;
                       busElement.style.marginTop = "15px";
-                    }
-                  }}
-                  ref={index === 0 ? firstStopRef : null}
-                >
-                  {stop.stop}
-                </p>
+                    }}
+                    ref={index === 0 ? firstStopRef : null}
+                  >
+                    {stop.stop}
+                  </p>
+                  {index !== stations.length - 1 && (
+                    <span className="text-gray-700 ps-8"> → </span>
+                  )}
+                </div>
               );
             })}
         </div>
