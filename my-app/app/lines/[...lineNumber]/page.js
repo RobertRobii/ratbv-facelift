@@ -1,15 +1,28 @@
 "use client";
 
+// Hooks
 import { useEffect, useState, useRef } from "react";
-
+// Bus data
 import { busData } from "@/busdata/busData";
-
+// Components
 import DesktopTable from "@/app/components/DesktopTable";
 import MobileTable from "@/app/components/MobileTable";
-
+// PDF
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+// Next
 import Image from "next/image";
+// Framer Motion
+import { motion } from "framer-motion";
+import { fadeIn } from "@/variants";
+import { useInView } from "react-intersection-observer";
 
 const Line = ({ params }) => {
+  const { ref, inView } = useInView({
+    triggerOnce: true, // Schimba la false daca vrei sa declansezi animatia de fiecare data cand intra in viewport
+    threshold: 0.6, // Ajusteaza cat de mult din element trebuie sa fie vizibil pentru a declansa animatia
+  });
+
   const [lineData, setLineData] = useState({});
 
   const [width, setWidth] = useState(window.innerWidth);
@@ -144,29 +157,80 @@ const Line = ({ params }) => {
     setRouteInfo(isReverse ? lineObject.routeTo : lineObject.routeFrom);
   };
 
+  const generatePDF = async () => {
+    try {
+      const pdf = new jsPDF();
+      const table = document.getElementById("pdf-table");
+
+      const canvas = await html2canvas(table);
+      const imgData = canvas.toDataURL("image/png");
+
+      pdf.text(`Linia: ${lineNumber}`, 10, 10);
+      pdf.text(`Directia: ${routeInfo}`, 10, 20);
+      pdf.text(`Statia: ${currentStation}`, 10, 30);
+
+      // Adăugarea imaginii după text
+      pdf.addImage(imgData, "PNG", 10, 40, 190, 0);
+
+      pdf.text(
+        "Nota: Respectarea orelor de trecere poate fi influentata de conditiile de trafic!",
+        10,
+        170
+      );
+
+      pdf.save("table.pdf");
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+    }
+  };
+
   return (
-    <section className="container mx-auto">
-      <div className="w-full bg-accent rounded-lg flex items-center justify-center h-20 text-xl xl:text-3xl text-white font-bold mb-10">
+    <section className="container mx-auto" ref={ref}>
+      <motion.div
+        variants={fadeIn("down", 0.2)}
+        initial="hidden"
+        animate={inView ? "show" : "hidden"}
+        className="w-full bg-accent rounded-lg flex items-center justify-center h-20 text-xl xl:text-3xl text-white font-bold mb-10"
+      >
         <p className="mr-6 xl:mr-10 bg-white text-accent px-4 py-2 text-center rounded-xl">
           {lineNumber}
         </p>
-        <h1>{routeInfo}</h1>
-      </div>
+        <h1
+          variants={fadeIn("down", 0.2)}
+          initial="hidden"
+          animate={inView ? "show" : "hidden"}
+        >
+          {routeInfo}
+        </h1>
+      </motion.div>
 
-      <div className="flex flex-col xl:flex-row justify-center items-center xl:justify-between mb-6">
+      <motion.div
+        variants={fadeIn("down", 0.4)}
+        initial="hidden"
+        animate={inView ? "show" : "hidden"}
+        className="flex flex-col xl:flex-row justify-center items-center xl:justify-between mb-6"
+      >
         <button
           onClick={toggleReverse}
           className="text-accent bg-transparent border border-accent w-[220px] px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition-all duration-200 mb-6 xl:mb-0"
         >
           {isReverse ? "Vezi cursa directa" : "Vezi cursa inversa"}
         </button>
-        <button className="text-accent bg-transparent border border-accent w-[220px] px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition-all duration-200">
+        <button
+          onClick={generatePDF}
+          className="text-accent bg-transparent border border-accent w-[220px] px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition-all duration-200"
+        >
           Salvare tabel format PDF
         </button>
-      </div>
+      </motion.div>
 
-      <div className="hidden xl:block">
-        <h1 className="text-center text-xl mb-6">Traseu:</h1>
+      <motion.div
+        variants={fadeIn("none", 1)}
+        initial="hidden"
+        animate={inView ? "show" : "hidden"}
+        className="hidden xl:block"
+      >
+        <h1 className="text-center text-xl text-gray-700 mb-6">Traseu:</h1>
         <div className="flex justify-center items-center px-2 gap-x-[50px] gap-y-[60px] flex-wrap">
           {lineObject &&
             stations &&
@@ -234,9 +298,14 @@ const Line = ({ params }) => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="md:hidden mb-10 flex justify-center items-center">
+      <motion.div
+        variants={fadeIn("down", 0.4)}
+        initial="hidden"
+        animate={inView ? "show" : "hidden"}
+        className="md:hidden mb-10 flex justify-center items-center"
+      >
         <select
           className="w-[220px] bg-accent border border-accent rounded-lg text-white focus:outline-none h-[40px] text-center"
           onChange={(e) => {
@@ -256,9 +325,14 @@ const Line = ({ params }) => {
               </option>
             ))}
         </select>
-      </div>
+      </motion.div>
 
-      <div className="flex justify-between items-center">
+      <motion.div
+        variants={fadeIn("up", 0.6)}
+        initial="hidden"
+        animate={inView ? "show" : "hidden"}
+        className="flex justify-between items-center"
+      >
         <p className="text-gray-700 text-lg xl:text-2xl">
           Statia: {lineObject ? currentStation : "Loading..."}
         </p>
@@ -266,7 +340,7 @@ const Line = ({ params }) => {
           Valabil din:{" "}
           {lineObject ? formatDate(lineObject.validFrom) : "Loading..."}
         </p>
-      </div>
+      </motion.div>
 
       {isMobile ? (
         <MobileTable
@@ -275,15 +349,21 @@ const Line = ({ params }) => {
         />
       ) : (
         <DesktopTable
+          tableId="pdf-table"
           lineObject={lineObject}
           selectedStationData={selectedStationData}
         />
       )}
 
-      <h1 className="my-6 text-lg xl:text-2xl text-gray-700">
+      <motion.h1
+        variants={fadeIn("up", 0.6)}
+        initial="hidden"
+        animate={inView ? "show" : "hidden"}
+        className="my-6 text-lg xl:text-2xl text-gray-700"
+      >
         <span className="font-bold">Nota: </span>Respectarea orelor de trecere
         poate fi influentata de conditiile de trafic!
-      </h1>
+      </motion.h1>
     </section>
   );
 };

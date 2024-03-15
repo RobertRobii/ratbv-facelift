@@ -1,8 +1,20 @@
-import React from "react";
+import { motion } from "framer-motion";
+import { fadeIn } from "@/variants";
+import { useInView } from "react-intersection-observer";
 
 const MobileTable = ({ lineObject, selectedStationData }) => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.6, // Ajusteaza cat de mult din element trebuie sa fie vizibil pentru a declansa animatia
+  });
+
   return (
-    <>
+    <motion.section
+      ref={ref}
+      variants={fadeIn("up", 0.6)}
+      initial="hidden"
+      animate={inView ? "show" : "hidden"}
+    >
       <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -127,7 +139,7 @@ const MobileTable = ({ lineObject, selectedStationData }) => {
           </tr>
         </tbody>
       </table>
-    </>
+    </motion.section>
   );
 };
 
