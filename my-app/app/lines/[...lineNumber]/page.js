@@ -2,48 +2,35 @@
 
 // Hooks
 import { useEffect, useState, useRef } from "react";
+
 // Bus data
 import { busData } from "@/busdata/busData";
-// Components
-import DesktopTable from "@/app/components/DesktopTable";
-import MobileTable from "@/app/components/MobileTable";
+
 // PDF
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-// Next
-import Image from "next/image";
+
 // Framer Motion
 import { motion } from "framer-motion";
 import { fadeIn } from "@/variants";
 import { useInView } from "react-intersection-observer";
 
+// Components
+import DesktopTable from "@/app/components/DesktopTable";
+import MobileTable from "@/app/components/MobileTable";
+import RouteInfo from "@/app/components/RouteInfo";
+import ScheduleButtons from "@/app/components/ScheduleButtons";
+import Stations from "@/app/components/Stations";
+import MobileStations from "@/app/components/MobileStations";
+
 const Line = ({ params }) => {
   const { ref, inView } = useInView({
-    triggerOnce: true, // Schimba la false daca vrei sa declansezi animatia de fiecare data cand intra in viewport
-    threshold: 0.6, // Ajusteaza cat de mult din element trebuie sa fie vizibil pentru a declansa animatia
+    triggerOnce: true,
+    threshold: 0.6, // Cat de mult din element trebuie sa fie vizibil pentru a declansa animatia
   });
 
   const [lineData, setLineData] = useState({});
-
-  const [width, setWidth] = useState(window.innerWidth);
-
   const lineNumber = params.lineNumber[0];
-
-  useEffect(() => {
-    const getLineData = async () => {
-      const res = await fetch("/api/getLineData/");
-      try {
-        if (res.ok) {
-          const data = await res.json();
-          setLineData(data);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getLineData();
-  }, [lineNumber]);
 
   // useEffect(() => {
   //   const pushData = async () => {
@@ -68,12 +55,28 @@ const Line = ({ params }) => {
   //   pushData();
   // }, []);
 
-  // console.log(lineData.data ? lineData.data : "Data is not yet available");
+  useEffect(() => {
+    const getLineData = async () => {
+      const res = await fetch("/api/getLineData/");
+      try {
+        if (res.ok) {
+          const data = await res.json();
+          setLineData(data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getLineData();
+  }, [lineNumber]);
 
   const lineObject =
     lineData.data &&
     lineData.data.find((line) => line.lineNumber === parseInt(lineNumber));
-  // console.log(lineObject);
+
+  const [width, setWidth] = useState(window.innerWidth);
+  const isMobile = width <= 768;
 
   useEffect(() => {
     const handleResize = () => {
@@ -87,9 +90,6 @@ const Line = ({ params }) => {
     };
   }, []);
 
-  const isMobile = width <= 768;
-
-  const [isReverse, setIsReverse] = useState(false);
   const [stations, setStations] = useState([]);
 
   const firstStopRef = useRef(null);
@@ -130,6 +130,8 @@ const Line = ({ params }) => {
     }
   }, [lineObject]);
 
+  const [isReverse, setIsReverse] = useState(false);
+
   useEffect(() => {
     if (lineObject) {
       setStations(
@@ -157,6 +159,27 @@ const Line = ({ params }) => {
     setRouteInfo(isReverse ? lineObject.routeTo : lineObject.routeFrom);
   };
 
+  const handleStationClick = (e, stop) => {
+    setCurrentStation(stop.stop);
+    setSelectedStationData(stop);
+    const rect = e.target.getBoundingClientRect();
+    const centerX = rect.width / 2;
+    const busElement = document.getElementById("bus");
+    busElement.style.position = "absolute";
+    busElement.style.left = `${rect.left + centerX - 25}px`;
+    busElement.style.top = `${rect.top}px`;
+    busElement.style.marginTop = "15px";
+  };
+
+  const handleStationChange = (e) => {
+    const selectedStationName = e.target.value;
+    const selectedStation = stations.find(
+      (station) => station.stop === selectedStationName
+    );
+    setCurrentStation(selectedStationName);
+    setSelectedStationData(selectedStation);
+  };
+
   const generatePDF = async () => {
     try {
       const pdf = new jsPDF();
@@ -168,10 +191,7 @@ const Line = ({ params }) => {
       pdf.text(`Linia: ${lineNumber}`, 10, 10);
       pdf.text(`Directia: ${routeInfo}`, 10, 20);
       pdf.text(`Statia: ${currentStation}`, 10, 30);
-
-      // Adăugarea imaginii după text
       pdf.addImage(imgData, "PNG", 10, 40, 190, 0);
-
       pdf.text(
         "Nota: Respectarea orelor de trecere poate fi influentata de conditiile de trafic!",
         10,
@@ -186,146 +206,25 @@ const Line = ({ params }) => {
 
   return (
     <section className="container mx-auto" ref={ref}>
-      <motion.div
-        variants={fadeIn("down", 0.2)}
-        initial="hidden"
-        animate={inView ? "show" : "hidden"}
-        className="w-full bg-accent rounded-lg flex items-center justify-center h-20 text-xl xl:text-3xl text-white font-bold mb-10"
-      >
-        <p className="mr-6 xl:mr-10 bg-white text-accent px-4 py-2 text-center rounded-xl">
-          {lineNumber}
-        </p>
-        <h1
-          variants={fadeIn("down", 0.2)}
-          initial="hidden"
-          animate={inView ? "show" : "hidden"}
-        >
-          {routeInfo}
-        </h1>
-      </motion.div>
-
-      <motion.div
-        variants={fadeIn("down", 0.4)}
-        initial="hidden"
-        animate={inView ? "show" : "hidden"}
-        className="flex flex-col xl:flex-row justify-center items-center xl:justify-between mb-6"
-      >
-        <button
-          onClick={toggleReverse}
-          className="text-accent bg-transparent border border-accent w-[220px] px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition-all duration-200 mb-6 xl:mb-0"
-        >
-          {isReverse ? "Vezi cursa directa" : "Vezi cursa inversa"}
-        </button>
-        <button
-          onClick={generatePDF}
-          className="text-accent bg-transparent border border-accent w-[220px] px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition-all duration-200"
-        >
-          Salvare tabel format PDF
-        </button>
-      </motion.div>
-
-      <motion.div
-        variants={fadeIn("none", 1)}
-        initial="hidden"
-        animate={inView ? "show" : "hidden"}
-        className="hidden xl:block"
-      >
-        <h1 className="text-center text-xl text-gray-700 mb-6">Traseu:</h1>
-        <div className="flex justify-center items-center px-2 gap-x-[50px] gap-y-[60px] flex-wrap">
-          {lineObject &&
-            stations &&
-            stations.map((stop, index) => {
-              return (
-                <div key={index} className="flex">
-                  <Image
-                    className="mr-2"
-                    src="/station-icon.svg"
-                    alt="Station icon"
-                    width={20}
-                    height={20}
-                  ></Image>
-                  <p
-                    className={
-                      stop.stop === currentStation
-                        ? "text-accent cursor-pointer hover:text-accent transition-all duration-200"
-                        : "text-gray-700 cursor-pointer hover:text-accent transition-all duration-200"
-                    }
-                    onClick={(e) => {
-                      setCurrentStation(stop.stop);
-                      setSelectedStationData(stop);
-                      const rect = e.target.getBoundingClientRect();
-                      const centerX = rect.width / 2;
-                      const busElement = document.getElementById("bus");
-                      busElement.style.position = "absolute";
-                      busElement.style.left = `${rect.left + centerX - 25}px`;
-                      busElement.style.top = `${rect.top}px`;
-                      busElement.style.marginTop = "15px";
-                    }}
-                    ref={index === 0 ? firstStopRef : null}
-                  >
-                    {stop.stop}
-                  </p>
-                  {index !== stations.length - 1 && (
-                    <span className="text-gray-700 ps-8"> → </span>
-                  )}
-                </div>
-              );
-            })}
-        </div>
-
-        <div className="h-[50px] flex items-center mb-4">
-          <div
-            id="bus"
-            style={{
-              position: "absolute",
-              transition: "left 0.5s ease-in-out, top 0.5s ease-in-out",
-            }}
-          >
-            <div className="flex flex-col items-center">
-              <Image
-                className="my-2"
-                src="/uparrow-icon.svg"
-                alt="Up arrow icon"
-                width={15}
-                height={15}
-              ></Image>
-              <Image
-                src="/bus-icon.png"
-                alt="Bus icon"
-                width={50}
-                height={50}
-              ></Image>
-            </div>
-          </div>
-        </div>
-      </motion.div>
-
-      <motion.div
-        variants={fadeIn("down", 0.4)}
-        initial="hidden"
-        animate={inView ? "show" : "hidden"}
-        className="md:hidden mb-10 flex justify-center items-center"
-      >
-        <select
-          className="w-[220px] bg-accent border border-accent rounded-lg text-white focus:outline-none h-[40px] text-center"
-          onChange={(e) => {
-            const selectedStationName = e.target.value;
-            const selectedStation = stations.find(
-              (station) => station.stop === selectedStationName
-            );
-            setCurrentStation(selectedStationName);
-            setSelectedStationData(selectedStation);
-          }}
-        >
-          {lineObject &&
-            stations &&
-            stations.map((stop, index) => (
-              <option key={index} value={stop.stop}>
-                {stop.stop}
-              </option>
-            ))}
-        </select>
-      </motion.div>
+      <RouteInfo lineNumber={lineNumber} routeInfo={routeInfo} />
+      <ScheduleButtons
+        toggleReverse={toggleReverse}
+        isReverse={isReverse}
+        generatePDF={generatePDF}
+      />
+      <Stations
+        lineObject={lineObject}
+        handleStationClick={handleStationClick}
+        stations={stations}
+        currentStation={currentStation}
+        firstStopRef={firstStopRef}
+      />
+      <MobileStations
+        stations={stations}
+        currentStation={currentStation}
+        handleStationChange={handleStationChange}
+        lineObject={lineObject}
+      />
 
       <motion.div
         variants={fadeIn("up", 0.6)}
