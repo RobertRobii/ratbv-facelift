@@ -7,7 +7,7 @@ import { useInView } from "react-intersection-observer";
 const DesktopTable = ({ lineObject, selectedStationData, tableId }) => {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.6, // Ajusteaza cat de mult din element trebuie sa fie vizibil pentru a declansa animatia
+    threshold: 0.6, // Cat de mult din element trebuie sa fie vizibil pentru a declansa animatia
   });
 
   return (
