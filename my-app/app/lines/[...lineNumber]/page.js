@@ -16,12 +16,12 @@ import { fadeIn } from "@/variants";
 import { useInView } from "react-intersection-observer";
 
 // Components
-import DesktopTable from "@/app/components/DesktopTable";
-import MobileTable from "@/app/components/MobileTable";
-import RouteInfo from "@/app/components/RouteInfo";
-import ScheduleButtons from "@/app/components/ScheduleButtons";
-import Stations from "@/app/components/Stations";
-import MobileStations from "@/app/components/MobileStations";
+import DesktopTable from "@/components/DesktopTable";
+import MobileTable from "@/components/MobileTable";
+import RouteInfo from "@/components/RouteInfo";
+import ScheduleButtons from "@/components/ScheduleButtons";
+import Stations from "@/components/Stations";
+import MobileStations from "@/components/MobileStations";
 
 const Line = ({ params }) => {
   const { ref, inView } = useInView({
