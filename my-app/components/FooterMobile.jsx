@@ -8,20 +8,23 @@ export default function FooterMobile() {
   return (
     <div className="flex flex-col gap-3 text-white bg-gradient-to-b from-[#00B906] to-[#008706] pb-375">
       <div className="flex flex-wrap justify-center gap-16">
-        <div className="border-t border-white h-52 w-64">
+        <div className="border-t border-white h-52 w-64 py-1">
           <h2 className="footer-h2">DESPRE NOI</h2>
         </div>
-        <div className="border-t border-white h-52 w-64">
-          <h2 className="footer-h2">INFORMATII LEGALE</h2>
+        <div className="border-t border-white h-52 w-64 py-1">
+          <h2 className="footer-h2">INFORMAȚII LEGALE</h2>
         </div>
-        <div className="flex flex-col gap-3 text-sm border-t border-white w-64 mb-8">
+        <div className="flex flex-col gap-3 text-sm border-t border-white w-64 mb-8 py-1">
           <h2 className="footer-h2">CONTACT</h2>
           <p>Adresa: Str. Harmanului nr. 49 Brasov, Romania</p>
           <p>Call Center: 0368.800.600</p>
           <p>
             E-mail: ratbv@ratbv.ro (sesizari) comunicare@ratbv.ro (publicitate)
           </p>
-          <a className="font-semibold cursor-pointer underline w-fit">
+          <a
+            href="/contact"
+            className="font-semibold cursor-pointer underline w-fit"
+          >
             Vezi mai multe...
           </a>
         </div>
@@ -63,7 +66,9 @@ export default function FooterMobile() {
             PRIMĂRIA MUNICIPIULUI BRAȘOV
           </p>
         </a>
-        <p>Copyright @{new Date().getFullYear()}</p>
+        <p className="text-slate-200 text-sm">
+          Copyright @{new Date().getFullYear()}
+        </p>
       </div>
     </div>
   );

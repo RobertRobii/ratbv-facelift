@@ -15,7 +15,10 @@ export default function FooterDesktop() {
           <p>
             E-mail: ratbv@ratbv.ro (sesizari) comunicare@ratbv.ro (publicitate)
           </p>
-          <a className="font-semibold cursor-pointer underline w-fit">
+          <a
+            href="/contact"
+            className="font-semibold cursor-pointer underline hover:text-slate-200 w-fit"
+          >
             Vezi mai multe...
           </a>
         </div>
@@ -23,7 +26,7 @@ export default function FooterDesktop() {
           <h2 className="footer-h2">DESPRE NOI</h2>
         </div>
         <div className="border-r border-white w-64 mr-20">
-          <h2 className="footer-h2">INFORMATII LEGALE</h2>
+          <h2 className="footer-h2">INFORMAȚII LEGALE</h2>
         </div>
         <div className="flex flex-col justify-between">
           <a href="https://www.brasovcity.ro/" className="flex items-center">
@@ -65,7 +68,9 @@ export default function FooterDesktop() {
         </div>
       </div>
       <div className="flex justify-center">
-        <p className="flex-row">Copyright @{new Date().getFullYear()}</p>
+        <p className="flex-row text-slate-200 text-sm">
+          Copyright @{new Date().getFullYear()}
+        </p>
       </div>
     </div>
   );
