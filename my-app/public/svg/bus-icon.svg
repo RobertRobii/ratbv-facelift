@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 34" width="50" height="34">
+	<title>bus-icon</title>
+	<defs>
+		<image  width="50" height="34" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAiCAMAAAAqN3oYAAAAAXNSR0IB2cksfwAAAO1QTFRF////kJehTVZjMT1PM0FVMkBTMj5PRE5ce4KNgYiTM0FUR1Ffl56okZiiMT9SM0BUQ01bUFlmMj9TaHB8Mj5PMkBUmJ+pMz5PeICLmJ+peH+KMj5Plp2nMT1PaXF9d3+KUVpnOkVUiI+aiZCaOURTUFlmZ297MT1QbnaCSVNgPkhXdn6JgIiSNUBRXWZyPUdWMT1PZGx4ZW15MT5PjZSeMT5RY2t3QkxaQEtZj5ehMT1Pi5KcQUtZi5OdMj9SSlNhj5agNEBQXGVxW2RwNUBQV19sWGBtV2BtlZymYGl1ipGcMz9PlJulVl9sND9QxHtqyQAAAE90Uk5TABm/+v//+NFSQ//KBhf//9S5/4H3/wL2WQRa9gj7f1y25jAu57iE/XHH3V1F8Jvg/IuI+SP+jtXZG/ko2Cb/xh3ynJ7xqaeoDJMq9Q6q8zoUPP4AAAFsSURBVHic1ZRbW4JAEIaHGK2IqEhEVLK0srIDlp0zs7I85f//OcUuh52FIm96nuZm55tv390FZgEAZUHFzMjlF5cgjOVfACy0FZ0Tq4wwwsXIgLhGoHWObGQtbmpxvsmQQvIAVFqCzhd9xPRTu+Qw3ilXRCnpqotb/sjoUvQyalRSvY07EeJEUxwqqa5buUaIxFNAklTv4t68yD6qxTmRahMPEs+iS88i6UM8CpByVGtRKetjNBSOVGq8ffRWQZQJDXCCpz5ikq9tUJnQZ2wXsfm+GtRCqimjAv4YJu9pcREzA0mLf4Bo8rUVQhMv3h8fzGsryvlF+iTqhYjX8Tuo4yWmG7LXhEuetHnXXaVtQr1ruOGJwsu3aQjx7u5BeWD7dHm5m4bE3qPdewpuQR+fefKCryCF4PWF8gBd/28DdRffZETw3oXy0EZ1NB6PXJwMZeQ7r27zY08aMhF7tuRNP2aGMRsk9hC8aSA/ATu8Luhf/lXNAAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+	</style>
+	<use id="Background" href="#img1" x="0" y="0"/>
+</svg>
