@@ -29,11 +29,11 @@ export default function Navbar() {
 
   return (
     <nav>
-      {pageWidth >= 1120 && <NavbarDesktop scrollY={scrollY} />}
-      {pageWidth < 1120 && pageWidth >= 750 && (
+      {pageWidth >= 1024 && <NavbarDesktop scrollY={scrollY} />}
+      {pageWidth < 1024 && pageWidth >= 768 && (
         <NavbarLaptop width={pageWidth} scrollY={scrollY} />
       )}
-      {pageWidth < 750 && <NavbarMobile width={pageWidth} scrollY={scrollY} />}
+      {pageWidth < 768 && <NavbarMobile width={pageWidth} scrollY={scrollY} />}
     </nav>
   );
 }

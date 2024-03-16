@@ -27,18 +27,13 @@ export default function NavbarDesktop({ scrollY }) {
           : ""
       }`}
     >
-      <div className="flex justify-between bg-transparent py-5 px-32">
+      <div className="flex justify-between bg-transparent container mx-auto py-5">
         <div>
           <a href="/">
-            <Image
-              src={ratbvLogo}
-              className="2xl:ml-[190px]"
-              width={100}
-              alt="RATBV Logo"
-            />
+            <Image src={ratbvLogo} width={100} alt="RATBV Logo" />
           </a>
         </div>
-        <div className="flex items-center 2xl:mr-[190px]">
+        <div className="flex items-center">
           <ul className="flex justify-between w-96 mr-24">
             <li className={pathname === "/" ? "selected" : ""}>
               <Link

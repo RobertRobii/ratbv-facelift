@@ -37,7 +37,7 @@ const Stations = ({
                 <div key={index} className="flex">
                   <Image
                     className="mr-2"
-                    src="/station-icon.svg"
+                    src="/svg/station-icon.svg"
                     alt="Station icon"
                     width={20}
                     height={20}
@@ -72,13 +72,13 @@ const Stations = ({
             <div className="flex flex-col items-center">
               <Image
                 className="my-2"
-                src="/uparrow-icon.svg"
+                src="/svg/uparrow-icon.svg"
                 alt="Up arrow icon"
                 width={15}
                 height={15}
               ></Image>
               <Image
-                src="/bus-icon.png"
+                src="/svg/uparrow-icon.svg"
                 alt="Bus icon"
                 width={50}
                 height={50}

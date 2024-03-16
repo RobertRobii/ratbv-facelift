@@ -37,7 +37,7 @@ export default function NavbarLaptop({ width, scrollY }) {
             : ""
         }`}
       >
-        <div className="flex justify-between bg-transparent py-5 px-32">
+        <div className="flex justify-between bg-transparent container mx-auto py-5">
           <div>
             <a href="/">
               <Image src={ratbvLogo} width={100} alt="RATBV Logo" />
