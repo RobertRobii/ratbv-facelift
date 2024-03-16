@@ -108,7 +108,7 @@ export default function NavbarDesktop({ scrollY }) {
               </span>
               <input
                 className="bg-white text-sm border border-slate-300 rounded focus:drop-shadow-md focus:outline-none focus:ring
-                focus:ring-[#00B906]/50  pl-9 pr-3 py-2"
+                focus:ring-[#00B906]/50 rounded-lg pl-9 pr-3 py-2"
                 placeholder="Caută linia dorita..."
                 type="text"
                 name="search"
