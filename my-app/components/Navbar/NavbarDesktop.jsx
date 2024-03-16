@@ -64,7 +64,7 @@ export default function NavbarDesktop({ scrollY }) {
                 Acasa
               </Link>
             </li>
-            <li className={pathname === "/lines/${id}" ? "selected" : ""}>
+            <li className={pathname === "/noutati" ? "selected" : ""}>
               <Link
                 href={"/noutati"}
                 className="hover:text-[#00B906] transition-all duration-300"
@@ -72,7 +72,7 @@ export default function NavbarDesktop({ scrollY }) {
                 Noutati
               </Link>
             </li>
-            <li className={pathname === "/test" ? "selected" : ""}>
+            <li className={pathname === "/informatii" ? "selected" : ""}>
               <Link
                 href="/informatii"
                 className="hover:text-[#00B906] transition-all duration-300"

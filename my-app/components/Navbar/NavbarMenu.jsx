@@ -92,7 +92,7 @@ export default function NavbarMenu({ handleOpenMenu, pageWidth }) {
                     </svg>
                   </span>
                   <input
-                    className="bg-white text-sm rounded shadow-md focus:drop-shadow-md focus:outline-none focus:ring
+                    className="bg-white text-[16px] rounded shadow-md focus:drop-shadow-md focus:outline-none focus:ring
                 focus:ring-[#00B906] rounded-lg w-full pl-9 pr-3 py-2"
                     placeholder="Caută linia dorita..."
                     type="text"
@@ -110,22 +110,19 @@ export default function NavbarMenu({ handleOpenMenu, pageWidth }) {
               </button>
             </>
           )}
-          <ul className="space-y-3 text-gray-700">
+          <ul className="space-y-3 text-gray-700" onClick={handleOpenMenu}>
             <li className={pathname === "/" ? "selected" : ""}>
               <Link href="/" className="hover:text-[#00B906] text-lg">
                 Acasa
               </Link>
             </li>
-            <li className={pathname === "/lines/${id}" ? "selected" : ""}>
-              <Link
-                href={"/lines/${id}"}
-                className="hover:text-[#00B906] text-lg"
-              >
+            <li className={pathname === "/noutati" ? "selected" : ""}>
+              <Link href={"/noutati"} className="hover:text-[#00B906] text-lg">
                 Noutati
               </Link>
             </li>
-            <li className={pathname === "/test" ? "selected" : ""}>
-              <Link href="/test" className="hover:text-[#00B906] text-lg">
+            <li className={pathname === "/informatii" ? "selected" : ""}>
+              <Link href="/informatii" className="hover:text-[#00B906] text-lg">
                 Informatii Utile
               </Link>
             </li>
