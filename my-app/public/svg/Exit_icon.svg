@@ -1,1 +1,9 @@
-<?xml version="1.0" ?><svg class="feather feather-x" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+	<title>Exit_icon-svg</title>
+	<defs>
+		<image  width="14" height="14" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOBAMAAADtZjDiAAAAAXNSR0IB2cksfwAAACpQTFRFLjdELzhFHSIrAAAAHSIqLzhGMDhGN0FRHSIrMDlHMTlHMTpILzdFLjZEarct/QAAAA50Uk5T9vguACz4+f8w+vr79/VAaGiZAAAAZ0lEQVR4nGNgVDY2NjYJZEhPAdKdBQxuZc7GJsuXMJgABbyqnBmM3cpcli8xZjA2SZ9d5QykjT3LtxiDaO/yKSDaZPnOMpC4V5ULUAsDUC9QizMDUC9QSwqD+AyguWplDEebgbRRLADlhCAgb62PagAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+	</style>
+	<use id="Layer" href="#img1" x="5" y="5"/>
+</svg>

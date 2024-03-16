@@ -40,7 +40,7 @@ export default function NavbarMenu({ handleOpenMenu, pageWidth }) {
         }`}
       >
         <div className="flex justify-between border-solid border-b border-[#00B906] pb-3">
-          <h2 className="font-semibold text-2xl">Meniu</h2>
+          <h2 className="font-semibold text-2xl text-gray-700">Meniu</h2>
           <Image
             src={exitIcon}
             width={30}
@@ -81,7 +81,7 @@ export default function NavbarMenu({ handleOpenMenu, pageWidth }) {
               </label>
             </form>
           )}
-          <ul className="space-y-3">
+          <ul className="space-y-3 text-gray-700">
             <li className={pathname === "/" ? "selected" : ""}>
               <Link href="/" className="hover:text-[#00B906] text-lg">
                 Acasa
