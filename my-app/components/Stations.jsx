@@ -78,7 +78,7 @@ const Stations = ({
                 height={15}
               ></Image>
               <Image
-                src="/svg/uparrow-icon.svg"
+                src="/images/bus-icon.png"
                 alt="Bus icon"
                 width={50}
                 height={50}

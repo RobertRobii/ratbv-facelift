@@ -36,7 +36,6 @@ body,
 html {
   margin: 0;
   padding: 0;
-  /* height: 100%; */
   /* background-image: url("../public/images/Desktop-1.png"); */
   background-repeat: no-repeat;
   background-size: cover;
@@ -58,7 +57,7 @@ html {
 }
 
 .scrolled {
-  @apply fixed top-0 w-full bg-slate-300/25 backdrop-blur shadow-lg transition;
+  @apply fixed top-0 w-full z-20 bg-slate-300/25 backdrop-blur shadow-lg transition;
 }
 
 .selected a {
