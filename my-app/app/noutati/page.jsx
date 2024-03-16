@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Loading from "@/components/Loading";
 
-const Home = () => {
+const Noutati = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ const Home = () => {
     }, 1000);
   }, []);
 
-  return <div>{loading ? <Loading /> : <div>Home</div>}</div>;
+  return <div>{loading ? <Loading /> : <div>Noutati</div>}</div>;
 };
 
-export default Home;
+export default Noutati;

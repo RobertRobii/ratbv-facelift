@@ -22,8 +22,17 @@ import RouteInfo from "@/components/RouteInfo";
 import ScheduleButtons from "@/components/ScheduleButtons";
 import Stations from "@/components/Stations/Stations";
 import MobileStations from "@/components/Stations/MobileStations";
+import Loading from "@/components/Loading";
 
 const Line = ({ params }) => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
+
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.6, // Cat de mult din element trebuie sa fie vizibil pentru a declansa animatia

@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import ratbvLogo from "@/public/images/RATBV_logo.png";
 import { useState } from "react";
@@ -65,7 +66,7 @@ export default function NavbarDesktop({ scrollY }) {
             </li>
             <li className={pathname === "/lines/${id}" ? "selected" : ""}>
               <Link
-                href={"/lines/${id}"}
+                href={"/noutati"}
                 className="hover:text-[#00B906] transition-all duration-300"
               >
                 Noutati
@@ -73,7 +74,7 @@ export default function NavbarDesktop({ scrollY }) {
             </li>
             <li className={pathname === "/test" ? "selected" : ""}>
               <Link
-                href="/test"
+                href="/informatii"
                 className="hover:text-[#00B906] transition-all duration-300"
               >
                 Informatii Utile
