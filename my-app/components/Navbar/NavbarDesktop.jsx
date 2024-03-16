@@ -5,14 +5,34 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
+import { useRouter } from "next/navigation";
+
 export default function NavbarDesktop({ scrollY }) {
   const pathname = usePathname();
+  const router = useRouter();
 
   const [searchbarText, setSearchbarText] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(`The line searched was: ${searchbarText}`);
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+
+    // Lista de linii speciale
+    const specialLines = ["A1", "5M", "17B", "20B", "23B", "34B", "41B"];
+
+    // Transformăm textul introdus de utilizator în majuscule
+    const lineNumber = searchbarText.toUpperCase();
+
+    if (specialLines.includes(lineNumber)) {
+      router.push(`/lines/${lineNumber}`);
+    } else if (isNaN(lineNumber)) {
+      alert("Linia trebuie sa fie un numar!");
+      setIsModalOpen((prev) => !prev);
+      console.log(isModalOpen);
+      setSearchbarText("");
+    } else {
+      router.push(`/lines/${lineNumber}`);
+    }
   };
 
   return (
@@ -68,7 +88,7 @@ export default function NavbarDesktop({ scrollY }) {
               </Link>
             </li>
           </ul>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSearchSubmit}>
             <label className="relative block">
               <span className="absolute inset-y-0 z-10 flex items-center pl-2">
                 <svg

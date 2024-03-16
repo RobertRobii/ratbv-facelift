@@ -16,12 +16,12 @@ import { fadeIn } from "@/variants";
 import { useInView } from "react-intersection-observer";
 
 // Components
-import DesktopTable from "@/components/DesktopTable";
-import MobileTable from "@/components/MobileTable";
+import DesktopTable from "@/components/Table/DesktopTable";
+import MobileTable from "@/components/Table/MobileTable";
 import RouteInfo from "@/components/RouteInfo";
 import ScheduleButtons from "@/components/ScheduleButtons";
-import Stations from "@/components/Stations";
-import MobileStations from "@/components/MobileStations";
+import Stations from "@/components/Stations/Stations";
+import MobileStations from "@/components/Stations/MobileStations";
 
 const Line = ({ params }) => {
   const { ref, inView } = useInView({
@@ -106,14 +106,6 @@ const Line = ({ params }) => {
     }
   }, [lineObject, width, stations]);
 
-  const formatDate = function (isoString) {
-    let date = new Date(isoString);
-    let day = ("0" + date.getDate()).slice(-2);
-    let month = ("0" + (date.getMonth() + 1)).slice(-2);
-    let year = date.getFullYear();
-    return `${day}.${month}.${year}`;
-  };
-
   const [currentStation, setCurrentStation] = useState(null);
   const [selectedStationData, setSelectedStationData] = useState(
     lineObject && lineObject.way.stopsTo[0].stop
@@ -162,12 +154,17 @@ const Line = ({ params }) => {
   const handleStationClick = (e, stop) => {
     setCurrentStation(stop.stop);
     setSelectedStationData(stop);
+
+    // Recalculăm coordonatele elementului în momentul click-ului
     const rect = e.target.getBoundingClientRect();
     const centerX = rect.width / 2;
     const busElement = document.getElementById("bus");
+
     busElement.style.position = "absolute";
     busElement.style.left = `${rect.left + centerX - 25}px`;
-    busElement.style.top = `${rect.top}px`;
+
+    // Actualizăm coordonata pe axa y cu noua valoare
+    busElement.style.top = `${window.scrollY + rect.top}px`;
     busElement.style.marginTop = "15px";
   };
 
@@ -202,6 +199,14 @@ const Line = ({ params }) => {
     } catch (error) {
       console.error("Error generating PDF:", error);
     }
+  };
+
+  const formatDate = function (isoString) {
+    let date = new Date(isoString);
+    let day = ("0" + date.getDate()).slice(-2);
+    let month = ("0" + (date.getMonth() + 1)).slice(-2);
+    let year = date.getFullYear();
+    return `${day}.${month}.${year}`;
   };
 
   return (
