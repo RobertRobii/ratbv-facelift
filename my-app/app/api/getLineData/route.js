@@ -6,7 +6,7 @@ export async function GET() {
   try {
     await connectToDB();
     const data = await BusSchedule.find({});
-    console.log(data);
+    // console.log(data);
     return NextResponse.json({ success: true, data: data });
   } catch (error) {
     console.error(error);

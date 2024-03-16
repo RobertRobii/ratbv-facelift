@@ -15,7 +15,7 @@ export async function POST(request) {
     for (const bus of busData) {
       try {
         const createdBus = await BusSchedule.create(bus);
-        console.log("Created bus schedule for line:", createdBus._id);
+        // console.log("Created bus schedule for line:", createdBus._id);
       } catch (error) {
         console.error("Error creating bus schedule for line:", bus._id, error);
       }
