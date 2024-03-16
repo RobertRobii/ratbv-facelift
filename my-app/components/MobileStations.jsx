@@ -25,7 +25,7 @@ const MobileStations = ({
         className="xl:hidden mb-10 flex justify-center items-center"
       >
         <select
-          value={currentStation}
+          value={currentStation || ""}
           className="w-[220px] bg-accent border border-accent rounded-lg text-white focus:outline-none h-[40px] text-center"
           onChange={handleStationChange}
         >

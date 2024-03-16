@@ -12,7 +12,7 @@ const RouteInfo = ({ lineNumber, routeInfo }) => {
   });
 
   return (
-    <section ref={ref}>
+    <section ref={ref} className="pt-[120px]">
       <motion.div
         variants={fadeIn("down", 0.2)}
         initial="hidden"

@@ -30,28 +30,45 @@ export default function NavbarDesktop({ scrollY }) {
       <div className="flex justify-between bg-transparent py-5 px-32">
         <div>
           <a href="/">
-            <Image src={ratbvLogo} width={100} alt="RATBV Logo" />
+            <Image
+              src={ratbvLogo}
+              className="2xl:ml-[190px]"
+              width={100}
+              alt="RATBV Logo"
+            />
           </a>
         </div>
-        <div className="flex items-end">
+        <div className="flex items-center 2xl:mr-[190px]">
           <ul className="flex justify-between w-96 mr-24">
             <li className={pathname === "/" ? "selected" : ""}>
-              <Link href="/" className="hover:text-[#00B906] px-1">
+              <Link
+                href="/"
+                className="hover:text-[#00B906] px-1 transition-all duration-300"
+              >
                 Acasa
               </Link>
             </li>
             <li className={pathname === "/lines/${id}" ? "selected" : ""}>
-              <Link href={"/lines/${id}"} className="hover:text-[#00B906]">
+              <Link
+                href={"/lines/${id}"}
+                className="hover:text-[#00B906] transition-all duration-300"
+              >
                 Noutati
               </Link>
             </li>
             <li className={pathname === "/test" ? "selected" : ""}>
-              <Link href="/test" className="hover:text-[#00B906]">
+              <Link
+                href="/test"
+                className="hover:text-[#00B906] transition-all duration-300"
+              >
                 Informatii Utile
               </Link>
             </li>
             <li className={pathname === "/contact" ? "selected" : ""}>
-              <Link href="/contact" className="hover:text-[#00B906]">
+              <Link
+                href="/contact"
+                className="hover:text-[#00B906] transition-all duration-300"
+              >
                 Despre Noi
               </Link>
             </li>
@@ -75,8 +92,8 @@ export default function NavbarDesktop({ scrollY }) {
                 </svg>
               </span>
               <input
-                className="bg-white text-sm rounded focus:drop-shadow-md focus:outline-none focus:ring
-                focus:ring-[#00B906]/50 placeholder:italic pl-9 pr-3 py-2"
+                className="bg-white text-sm border border-slate-300 rounded focus:drop-shadow-md focus:outline-none focus:ring
+                focus:ring-[#00B906]/50  pl-9 pr-3 py-2"
                 placeholder="Caută linia dorita..."
                 type="text"
                 name="search"
