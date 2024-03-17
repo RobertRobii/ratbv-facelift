@@ -93,7 +93,8 @@ focus:ring-[#00B906]/50 rounded-lg pl-2 pr-3 py-2 w-[250px] md:w-[350px]"
           onChange={(e) => setMessage(e.target.value)}
           id="message"
           value={message}
-          rows="6"
+          rows="8"
+          style={{ maxHeight: "500px", minHeight: "100px" }}
           className="bg-white text-[16px] border border-slate-300 rounded focus:drop-shadow-md focus:outline-none focus:ring
 focus:ring-[#00B906]/50 rounded-lg pl-2 pr-3 py-2 w-[250px] md:w-[350px]"
         ></textarea>

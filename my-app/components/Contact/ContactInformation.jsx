@@ -45,8 +45,8 @@ const ContactInformation = () => {
         </div>
         <div className="flex flex-col md:flex-row justify-center">
           <div className="flex justify-center gap-x-2">
-            <p>ratbv@ratbv.ro,</p>
-            <p>comunicare@ratbv.ro</p>
+            <p className="font-semibold">ratbv@ratbv.ro,</p>
+            <p className="font-semibold">comunicare@ratbv.ro</p>
           </div>
           <p className="ms-0 md:ms-2">
             (pentru sesizări și publicitate marketing)
@@ -55,17 +55,18 @@ const ContactInformation = () => {
       </div>
       <div className="flex flex-col xl:flex-row justify-center xl:justify-start items-center gap-x-2 mb-5">
         <div className="flex items-center gap-x-2 mb-2 md:mb-0">
-          <FaPhoneAlt size={20} color="#00B906" />
+          <FaPhoneAlt size={18} color="#00B906" />
           <p>Telefon: </p>
         </div>
         <p>
-          Call center: <span>0368 800 600; </span>
+          Call center: <span className="font-semibold">0368 800 600; </span>
         </p>
         <p>
-          Centrala: <span>0268 334 678, 0368 401 252; </span>
+          Centrala:{" "}
+          <span className="font-semibold">0268 334 678, 0368 401 252; </span>
         </p>
         <p>
-          Fax: <span>0268 335 660</span>
+          Fax: <span className="font-semibold">0268 335 660</span>
         </p>
       </div>
       <div className="flex items-stretch gap-x-2 mb-5">
