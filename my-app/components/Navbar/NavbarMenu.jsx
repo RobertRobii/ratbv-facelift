@@ -31,7 +31,7 @@ export default function NavbarMenu({ handleOpenMenu, pageWidth }) {
   }, [handleOpenMenu]);
 
   return (
-    <div className="fixed z-20 backdrop-filter backdrop-blur-sm w-screen h-screen">
+    <div>
       <div
         className={`navbar-menu ${
           pageWidth < 768
