@@ -6,6 +6,9 @@ import NavbarMenu from "./NavbarMenu";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 
+import { motion, AnimatePresence } from "framer-motion";
+import { slideIn } from "@/variants";
+
 export default function NavbarLaptop({ width, scrollY }) {
   const pathname = usePathname();
 
@@ -24,8 +27,21 @@ export default function NavbarLaptop({ width, scrollY }) {
   return (
     <>
       {openMenu === true && (
-        <NavbarMenu handleOpenMenu={handleOpenMenu} pageWidth={width} />
+        <div className="fixed z-30 backdrop-filter backdrop-blur-sm w-screen h-screen" />
       )}
+      <AnimatePresence>
+        {openMenu === true && (
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={slideIn}
+            className="fixed z-30 w-screen h-screen"
+          >
+            <NavbarMenu handleOpenMenu={handleOpenMenu} pageWidth={width} />
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div
         className={`fixed w-full ${
           pathname === "/"
