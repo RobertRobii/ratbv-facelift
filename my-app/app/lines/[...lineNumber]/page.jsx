@@ -84,13 +84,13 @@ const Line = ({ params }) => {
     lineData.data &&
     lineData.data.find((line) => line.lineNumber === parseInt(lineNumber));
 
-  const [width, setWidth] = useState(window.innerWidth);
-  const isMobile = width <= 768;
+  const [width, setWidth] = useState(null);
 
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
     };
+    handleResize();
 
     window.addEventListener("resize", handleResize);
 
@@ -98,6 +98,8 @@ const Line = ({ params }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  let isMobile = width <= 768;
 
   const [stations, setStations] = useState([]);
 
