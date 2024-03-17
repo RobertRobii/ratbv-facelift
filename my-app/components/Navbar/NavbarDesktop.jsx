@@ -85,7 +85,7 @@ export default function NavbarDesktop({ scrollY }) {
                 href="/contact"
                 className="hover:text-[#00B906] transition-all duration-300"
               >
-                Despre Noi
+                Contact
               </Link>
             </li>
           </ul>

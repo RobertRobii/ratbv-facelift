@@ -128,7 +128,7 @@ export default function NavbarMenu({ handleOpenMenu, pageWidth }) {
             </li>
             <li className={pathname === "/contact" ? "selected" : ""}>
               <Link href="/contact" className="hover:text-[#00B906] text-lg">
-                Despre Noi
+                Contact
               </Link>
             </li>
           </ul>

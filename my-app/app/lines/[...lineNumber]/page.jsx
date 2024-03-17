@@ -166,7 +166,12 @@ const Line = ({ params }) => {
     setCurrentStation(stop.stop);
     setSelectedStationData(stop);
 
-    // Recalculăm coordonatele elementului în momentul click-ului
+    // Daca statia pe care s-a dat click este ultima din lista, activeaza toggleReverse
+    if (stations[stations.length - 1].stop === stop.stop) {
+      toggleReverse();
+    }
+
+    // Restul logicii pentru click-ul pe statie
     const rect = e.target.getBoundingClientRect();
     const centerX = rect.width / 2;
     const busElement = document.getElementById("bus");
@@ -184,6 +189,11 @@ const Line = ({ params }) => {
     const selectedStation = stations.find(
       (station) => station.stop === selectedStationName
     );
+
+    if (stations[stations.length - 1].stop === selectedStationName) {
+      toggleReverse();
+    }
+
     setCurrentStation(selectedStationName);
     setSelectedStationData(selectedStation);
   };
