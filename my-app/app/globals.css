@@ -42,18 +42,12 @@ html {
   background-position: center;
 }
 
-.app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
+.footer {
+  @apply flex flex-col relative;
 }
 
 .footer-h2 {
   @apply text-lg font-semibold text-white;
-}
-
-.footer {
-  margin-top: auto;
 }
 
 .scrolled {
