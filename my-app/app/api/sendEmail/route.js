@@ -17,7 +17,7 @@ export async function POST(request) {
     let mailOptions = {
       from: email,
       to: process.env.EMAIL_USERNAME,
-      subject: `New Message from ${email}`,
+      subject: `New Message from ${name}`,
       text: `${message}`,
     };
 

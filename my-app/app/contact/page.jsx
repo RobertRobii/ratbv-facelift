@@ -33,11 +33,17 @@ const Contact = () => {
       });
 
       if (!response.ok) {
-        console.error("error while sending data");
+        console.error("Error while sending data!");
       }
 
       const data = await response.json();
-      console.log(data);
+
+      if (data.success) {
+        alert("Email sent successfully!");
+        setName("");
+        setEmail("");
+        setMessage("");
+      }
     } catch (error) {
       console.error("Error:", error);
     }
@@ -50,9 +56,14 @@ const Contact = () => {
       ) : (
         <div>
           <section className="container mx-auto">
-            <div className="pt-[100px]">
-              <form onSubmit={handleSubmit} className="max-w-sm mx-auto">
-                <h1 className="text-xl mb-5">Contact Us</h1>
+            <div className="pt-[100px] pb-[100px]">
+              <form
+                onSubmit={handleSubmit}
+                className="max-w-sm mx-auto flex flex-col justify-center items-center md:justify-start md:items-start"
+              >
+                <h1 className="text-xl mb-5 text-white bg-accent px-4 py-2 rounded-lg">
+                  Contact Us
+                </h1>
                 <div className="mb-5">
                   <label
                     htmlFor="name"
@@ -64,8 +75,9 @@ const Contact = () => {
                     onChange={(e) => setName(e.target.value)}
                     type="text"
                     id="name"
-                    className="bg-white text-sm border border-slate-300 rounded focus:drop-shadow-md focus:outline-none focus:ring
-                focus:ring-[#00B906]/50 rounded-lg pl-2 pr-3 py-2 w-full"
+                    value={name}
+                    className="bg-white text-[16px] border border-slate-300 rounded focus:drop-shadow-md focus:outline-none focus:ring
+                focus:ring-[#00B906]/50 rounded-lg pl-2 pr-3 py-2 w-[250px] md:w-[350px]"
                     required
                   />
                 </div>
@@ -80,8 +92,9 @@ const Contact = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     type="email"
                     id="email"
-                    className="bg-white text-sm border border-slate-300 rounded focus:drop-shadow-md focus:outline-none focus:ring
-                focus:ring-[#00B906]/50 rounded-lg pl-2 pr-3 py-2 w-full"
+                    value={email}
+                    className="bg-white text-[16px] border border-slate-300 rounded focus:drop-shadow-md focus:outline-none focus:ring
+                focus:ring-[#00B906]/50 rounded-lg pl-2 pr-3 py-2 w-[250px] md:w-[350px]"
                     required
                   />
                 </div>
@@ -95,9 +108,10 @@ const Contact = () => {
                   <textarea
                     onChange={(e) => setMessage(e.target.value)}
                     id="message"
-                    rows="4"
-                    className="bg-white text-sm border border-slate-300 rounded focus:drop-shadow-md focus:outline-none focus:ring
-                focus:ring-[#00B906]/50 rounded-lg pl-2 pr-3 py-2 w-full"
+                    value={message}
+                    rows="6"
+                    className="bg-white text-[16px] border border-slate-300 rounded focus:drop-shadow-md focus:outline-none focus:ring
+                focus:ring-[#00B906]/50 rounded-lg pl-2 pr-3 py-2 w-[250px] md:w-[350px]"
                   ></textarea>
                 </div>
                 <button
