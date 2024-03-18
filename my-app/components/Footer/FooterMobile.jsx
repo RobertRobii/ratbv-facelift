@@ -6,7 +6,7 @@ import ytLogo from "@/public/svg/Youtube_logo.svg";
 
 export default function FooterMobile() {
   return (
-    <div className="flex flex-col gap-3 text-white bg-gradient-to-b from-[#00B906] to-[#008706] pt-[2px] pb-3">
+    <div className="flex flex-col gap-3 text-white bg-gradient-to-b from-[#00B906] to-[#008706] pt-[0px] pb-3">
       <div className="flex flex-wrap justify-center gap-16">
         <div className="border-t border-white h-52 w-64 py-1">
           <h2 className="footer-h2">DESPRE NOI</h2>
