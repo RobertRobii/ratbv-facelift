@@ -12,7 +12,7 @@ const Noutati = () => {
     }, 1000);
   }, []);
 
-  return <div>{loading ? <Loading /> : <div>Noutati</div>}</div>;
+  return <main>{loading ? <Loading /> : <div>Noutati</div>}</main>;
 };
 
 export default Noutati;
