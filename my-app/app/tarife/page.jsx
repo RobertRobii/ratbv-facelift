@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Loading from "@/components/Loading";
-import DesktopTable from "@/components/tarife/DesktopTable";
-import MobileTable from "@/components/tarife/MobileTable";
+import DesktopPricingTable from "@/components/Tarife/DesktopPricingTable";
+import MobilePricing from "@/components/Tarife/MobilePricing";
 
 // Framer Motion
 import { motion } from "framer-motion";
@@ -33,7 +33,7 @@ const Tarife = () => {
     };
   }, []);
 
-  let isMobile = width <= 768;
+  let isMobile = width <= 1024;
 
   return (
     <div>
@@ -48,7 +48,7 @@ const Tarife = () => {
             Valabil din 24.02.2023 pe traseele operate de RATBV S.A. din
             Municipiul Brasov si Zona Metropolitana Brasov
           </p>
-          {isMobile ? <MobileTable /> : <DesktopTable />}
+          {isMobile ? <MobilePricing /> : <DesktopPricingTable />}
           <p className="text-center md:text-left text-gray-700 mt-10 font-semibold text-justify">
             Valabilitatea titlului de calatorie incepe de la momentul validarii
             sau achizitionarii lui, dupa caz.
