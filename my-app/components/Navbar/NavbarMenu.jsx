@@ -6,33 +6,98 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 
+import toast from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+
 export default function NavbarMenu({ handleOpenMenu, pageWidth }) {
   const pathname = usePathname();
   const router = useRouter();
 
   const [searchbarText, setSearchbarText] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
 
-    // Lista de linii speciale
-    const specialLines = ["A1", "5M", "17B", "20B", "23B", "34B", "41B"];
+    const lines = [
+      "A1",
+      "1",
+      "2",
+      "2B",
+      "3",
+      "4",
+      "5",
+      "5M",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "14",
+      "15",
+      "16",
+      "17",
+      "17B",
+      "18",
+      "20",
+      "20B",
+      "21",
+      "22",
+      "23",
+      "23B",
+      "24",
+      "25",
+      "28",
+      "29",
+      "31",
+      "32",
+      "33",
+      "34",
+      "34B",
+      "35",
+      "36",
+      "37",
+      "40",
+      "41",
+      "41B",
+      "50",
+      "52",
+      "53",
+      "54",
+      "60",
+      "100",
+      "110",
+      "120",
+      "130",
+      "131",
+      "140",
+      "210",
+      "220",
+      "310",
+      "320",
+      "410",
+      "411",
+      "412",
+      "420",
+      "511",
+      "520",
+      "540",
+      "610",
+      "611",
+      "612",
+      "620",
+      "710",
+      "711",
+      "810",
+    ];
 
-    // Transformăm textul introdus de utilizator în majuscule
     const lineNumber = searchbarText.toUpperCase();
 
-    if (specialLines.includes(lineNumber)) {
+    if (lines.includes(lineNumber)) {
       router.push(`/lines/${lineNumber}`);
       handleOpenMenu();
     } else if (isNaN(lineNumber)) {
-      alert("Linia trebuie sa fie un numar!");
-      setIsModalOpen((prev) => !prev);
-      console.log(isModalOpen);
+      toast.error("Incearca o linie valida!");
       setSearchbarText("");
-    } else {
-      router.push(`/lines/${lineNumber}`);
-      handleOpenMenu();
     }
   };
 
@@ -139,6 +204,7 @@ export default function NavbarMenu({ handleOpenMenu, pageWidth }) {
           </ul>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 }

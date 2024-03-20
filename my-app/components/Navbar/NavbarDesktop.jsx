@@ -6,6 +6,9 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
+import toast from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+
 import { useRouter } from "next/navigation";
 
 export default function NavbarDesktop({ scrollY }) {
@@ -13,7 +16,6 @@ export default function NavbarDesktop({ scrollY }) {
   const router = useRouter();
 
   const [searchbarText, setSearchbarText] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -27,9 +29,7 @@ export default function NavbarDesktop({ scrollY }) {
     if (specialLines.includes(lineNumber)) {
       router.push(`/lines/${lineNumber}`);
     } else if (isNaN(lineNumber)) {
-      alert("Linia trebuie sa fie un numar!");
-      setIsModalOpen((prev) => !prev);
-      console.log(isModalOpen);
+      toast.error(`${searchbarText} nu este o linie valida!`);
       setSearchbarText("");
     } else {
       router.push(`/lines/${lineNumber}`);
@@ -128,6 +128,7 @@ export default function NavbarDesktop({ scrollY }) {
           </form>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 }
