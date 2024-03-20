@@ -128,7 +128,7 @@ export default function NavbarMenu({ handleOpenMenu, pageWidth }) {
             </li>
             <li className={pathname === "/tarife" ? "selected" : ""}>
               <Link href="/tarife" className="hover:text-[#00B906] text-lg">
-                tarife
+                Tarife
               </Link>
             </li>
             <li className={pathname === "/contact" ? "selected" : ""}>

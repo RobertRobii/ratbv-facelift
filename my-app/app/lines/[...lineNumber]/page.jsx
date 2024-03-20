@@ -16,8 +16,8 @@ import { fadeIn } from "@/variants";
 import { useInView } from "react-intersection-observer";
 
 // Components
-import DesktopTable from "@/components/Table/DesktopTable";
-import MobileTable from "@/components/Table/MobileTable";
+import DesktopTable from "@/components/Stations/DesktopTable";
+import MobileTable from "@/components/Stations/MobileTable";
 import RouteInfo from "@/components/RouteInfo";
 import ScheduleButtons from "@/components/ScheduleButtons";
 import Stations from "@/components/Stations/Stations";
