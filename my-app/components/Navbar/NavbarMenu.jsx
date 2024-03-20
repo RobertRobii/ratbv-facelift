@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import exitIcon from "@/public/svg/Exit_icon.svg";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 
@@ -116,6 +116,24 @@ export default function NavbarMenu({ handleOpenMenu, pageWidth }) {
     };
   }, [handleOpenMenu]);
 
+  const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    // Adaugă ascultătorul de evenimente la document
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Înlătură ascultătorul de evenimente la document atunci când componenta este demontată
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
+
   return (
     <div>
       <div
@@ -186,10 +204,78 @@ export default function NavbarMenu({ handleOpenMenu, pageWidth }) {
                 Noutati
               </Link>
             </li>
-            <li className={pathname === "/informatii" ? "selected" : ""}>
-              <Link href="/informatii" className="hover:text-[#00B906] text-lg">
-                Informatii Utile
-              </Link>
+            <li
+              className={pathname === "/informatii" ? "selected" : ""}
+              ref={ref}
+            >
+              <div className="relative inline-block text-left">
+                <div>
+                  <button
+                    type="button"
+                    className="inline-flex w-full justify-center gap-x-1.5 rounded-md hover:text-[#00B906] transition-all duration-300"
+                    id="menu-button"
+                    aria-expanded="true"
+                    aria-haspopup="true"
+                    onClick={() => setIsOpen(!isOpen)}
+                  >
+                    Informatii utile
+                    {/* <svg
+                      className="-mr-1 h-5 w-5 text-gray-400"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                        clip-rule="evenodd"
+                      />
+                    </svg> */}
+                  </button>
+                </div>
+                {isOpen && (
+                  <div
+                    className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="menu-button"
+                    tabindex="-1"
+                  >
+                    <div className="py-1" role="none">
+                      <Link
+                        href="/informatii-turisti"
+                        className=" block px-4 py-2 hover:text-[#00B906] transition-all duration-300"
+                        role="menuitem"
+                        tabindex="-1"
+                        id="menu-item-0"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Informatii turisti
+                      </Link>
+                      <Link
+                        href="/obiecte-pierdute"
+                        className=" block px-4 py-2 hover:text-[#00B906] transition-all duration-300"
+                        role="menuitem"
+                        tabindex="-1"
+                        id="menu-item-1"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Obiecte pierdute
+                      </Link>
+                      <Link
+                        href="/intrebari-frecvente"
+                        className=" block px-4 py-2 hover:text-[#00B906] transition-all duration-300"
+                        role="menuitem"
+                        tabindex="-1"
+                        id="menu-item-2"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Intrebari frecvente
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
             </li>
             <li className={pathname === "/tarife" ? "selected" : ""}>
               <Link href="/tarife" className="hover:text-[#00B906] text-lg">

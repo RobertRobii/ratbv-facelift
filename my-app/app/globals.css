@@ -86,6 +86,10 @@ html {
   @apply fixed right-0 z-30 bg-slate-50 overflow-hidden h-full px-10 py-8;
 }
 
+.ReactCollapse--collapse {
+  transition: height 500ms;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
