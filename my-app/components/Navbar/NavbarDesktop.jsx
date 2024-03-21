@@ -38,7 +38,7 @@ export default function NavbarDesktop({ scrollY }) {
 
   return (
     <div
-      className={`fixed w-full ${
+      className={`fixed w-full z-10 ${
         pathname === "/"
           ? scrollY > 0
             ? "scrolled"
@@ -55,7 +55,7 @@ export default function NavbarDesktop({ scrollY }) {
           </a>
         </div>
         <div className="flex items-center">
-          <ul className="flex justify-between w-96 mr-24">
+          <ul className="flex justify-between w-[460px] mr-24">
             <li className={pathname === "/" ? "selected" : ""}>
               <Link
                 href="/"
@@ -78,6 +78,14 @@ export default function NavbarDesktop({ scrollY }) {
                 className="hover:text-[#00B906] transition-all duration-300"
               >
                 Informatii Utile
+              </Link>
+            </li>
+            <li className={pathname === "/tarife" ? "selected" : ""}>
+              <Link
+                href="/tarife"
+                className="hover:text-[#00B906] transition-all duration-300"
+              >
+                Tarife
               </Link>
             </li>
             <li className={pathname === "/contact" ? "selected" : ""}>
