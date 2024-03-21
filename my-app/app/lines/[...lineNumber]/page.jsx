@@ -18,8 +18,8 @@ import { useInView } from "react-intersection-observer";
 // Components
 import DesktopTable from "@/components/Stations/DesktopTable";
 import MobileTable from "@/components/Stations/MobileTable";
-import RouteInfo from "@/components/RouteInfo";
-import ScheduleButtons from "@/components/ScheduleButtons";
+import RouteInfo from "@/components/Lines/RouteInfo";
+import ScheduleButtons from "@/components/Lines/ScheduleButtons";
 import Stations from "@/components/Stations/Stations";
 import MobileStations from "@/components/Stations/MobileStations";
 import Loading from "@/components/Loading";
