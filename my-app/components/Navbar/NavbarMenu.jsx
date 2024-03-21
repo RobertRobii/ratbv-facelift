@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { Toaster } from "react-hot-toast";
 
-export default function NavbarMenu({ handleOpenMenu, pageWidth }) {
+export default function NavbarMenu({ setOpenMenu, handleOpenMenu, pageWidth }) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -134,6 +134,13 @@ export default function NavbarMenu({ handleOpenMenu, pageWidth }) {
     };
   }, [ref]);
 
+  const handleInformatiiUtileClick = (e) => {
+    // Oprim propagarea evenimentului de click
+    e.stopPropagation();
+    // Deschidem sau închidem meniul Informatii utile
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div>
       <div
@@ -212,11 +219,11 @@ export default function NavbarMenu({ handleOpenMenu, pageWidth }) {
                 <div>
                   <button
                     type="button"
-                    className="inline-flex w-full justify-center gap-x-1.5 rounded-md hover:text-[#00B906] transition-all duration-300"
+                    className="text-lg inline-flex w-full justify-center gap-x-1.5 rounded-md hover:text-[#00B906] transition-all duration-300"
                     id="menu-button"
                     aria-expanded="true"
                     aria-haspopup="true"
-                    onClick={() => setIsOpen(!isOpen)}
+                    onClick={handleInformatiiUtileClick}
                   >
                     Informatii utile
                     {/* <svg
@@ -235,16 +242,16 @@ export default function NavbarMenu({ handleOpenMenu, pageWidth }) {
                 </div>
                 {isOpen && (
                   <div
-                    className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    className="absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="menu-button"
                     tabindex="-1"
                   >
-                    <div className="py-1" role="none">
+                    <div role="none">
                       <Link
                         href="/informatii-turisti"
-                        className=" block px-4 py-2 hover:text-[#00B906] transition-all duration-300"
+                        className="block px-4 py-2 hover:text-[#00B906] hover:bg-gray-100 transition-all duration-300"
                         role="menuitem"
                         tabindex="-1"
                         id="menu-item-0"
@@ -254,7 +261,7 @@ export default function NavbarMenu({ handleOpenMenu, pageWidth }) {
                       </Link>
                       <Link
                         href="/obiecte-pierdute"
-                        className=" block px-4 py-2 hover:text-[#00B906] transition-all duration-300"
+                        className=" block px-4 py-2 hover:text-[#00B906] hover:bg-gray-100 transition-all duration-300"
                         role="menuitem"
                         tabindex="-1"
                         id="menu-item-1"
@@ -264,7 +271,7 @@ export default function NavbarMenu({ handleOpenMenu, pageWidth }) {
                       </Link>
                       <Link
                         href="/intrebari-frecvente"
-                        className=" block px-4 py-2 hover:text-[#00B906] transition-all duration-300"
+                        className=" block px-4 py-2 hover:text-[#00B906] hover:bg-gray-100 transition-all duration-300"
                         role="menuitem"
                         tabindex="-1"
                         id="menu-item-2"

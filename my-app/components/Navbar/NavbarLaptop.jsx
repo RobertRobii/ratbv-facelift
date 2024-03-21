@@ -38,7 +38,11 @@ export default function NavbarLaptop({ width, scrollY }) {
             variants={slideIn}
             className="fixed z-30 w-screen h-screen"
           >
-            <NavbarMenu handleOpenMenu={handleOpenMenu} pageWidth={width} />
+            <NavbarMenu
+              setOpenMenu={setOpenMenu}
+              handleOpenMenu={handleOpenMenu}
+              pageWidth={width}
+            />
           </motion.div>
         )}
       </AnimatePresence>

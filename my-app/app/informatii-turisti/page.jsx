@@ -12,7 +12,7 @@ const page = () => {
     }, 1000);
   }, []);
 
-  return <div>{loading ? <Loading /> : <div>Intrebari frecvente</div>}</div>;
+  return <div>{loading ? <Loading /> : <div>Informatii turisti</div>}</div>;
 };
 
 export default page;
