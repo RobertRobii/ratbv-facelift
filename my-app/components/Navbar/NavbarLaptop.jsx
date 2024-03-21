@@ -45,9 +45,9 @@ export default function NavbarLaptop({ width, scrollY }) {
       <div
         className={`fixed w-full ${
           pathname === "/"
-            ? scrollY > 20
-              ? "fade-in"
-              : "fade-out"
+            ? scrollY > 0
+              ? "scrolled"
+              : "fixed z-20 backdrop-blur-lg bg-gray-200/[0.6] transition"
             : scrollY > 0
             ? "scrolled"
             : ""
@@ -80,7 +80,7 @@ export default function NavbarLaptop({ width, scrollY }) {
                 </span>
                 <input
                   className="bg-white text-sm rounded focus:drop-shadow-md focus:outline-none focus:ring
-                focus:ring-[#00B906]/50 border border-slate-300 placeholder:italic mr-16 pl-9 pr-3 py-2"
+                focus:ring-[#00B906]/50 border border-slate-300 mr-16 pl-9 pr-3 py-2"
                   placeholder="Caută linia dorita..."
                   type="text"
                   name="search"

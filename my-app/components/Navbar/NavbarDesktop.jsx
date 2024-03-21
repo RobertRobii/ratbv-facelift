@@ -42,7 +42,7 @@ export default function NavbarDesktop({ scrollY }) {
         pathname === "/"
           ? scrollY > 0
             ? "scrolled"
-            : "z-10 backdrop-blur-lg bg-gray-200/[0.6] transition"
+            : "fixed z-20 backdrop-blur-lg bg-gray-200/[0.6] transition"
           : scrollY > 0
           ? "scrolled"
           : ""
