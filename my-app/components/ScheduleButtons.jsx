@@ -27,7 +27,7 @@ const ScheduleButtons = ({ toggleReverse, isReverse, generatePDF }) => {
         </button>
         <button
           onClick={generatePDF}
-          className="text-accent bg-transparent border border-accent w-[220px] px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition-all duration-200"
+          className="text-accent hidden xl:block bg-transparent border border-accent w-[220px] px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition-all duration-200"
         >
           Salvare tabel format PDF
         </button>
