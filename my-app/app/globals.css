@@ -37,9 +37,19 @@ html {
   margin: 0;
   padding: 0;
   /* background-image: url("../public/images/Desktop-1.png"); */
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: center; */
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.home-h2 {
+  @apply text-primary text-3xl;
 }
 
 .footer {
@@ -74,12 +84,12 @@ html {
 
 .fade-in {
   animation: fadeIn 1s ease-in forwards;
-  @apply fixed top-0 bg-slate-300/25 backdrop-blur shadow-lg w-full;
+  @apply fixed top-0 z-10 bg-slate-300/25 backdrop-blur shadow-lg w-full;
 }
 
 .fade-out {
   animation: fadeOut 1s ease-in forwards;
-  @apply fixed top-0 bg-slate-300/25 backdrop-blur shadow-lg w-full;
+  @apply fixed top-0 z-10 bg-slate-300/25 backdrop-blur shadow-lg w-full;
 }
 
 .navbar-menu {

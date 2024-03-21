@@ -49,9 +49,9 @@ export default function NavbarLaptop({ width, scrollY }) {
       <div
         className={`fixed w-full ${
           pathname === "/"
-            ? scrollY > 20
-              ? "fade-in"
-              : "fade-out"
+            ? scrollY > 0
+              ? "scrolled"
+              : "fixed z-20 backdrop-blur-lg bg-gray-200/[0.6] transition"
             : scrollY > 0
             ? "scrolled"
             : ""

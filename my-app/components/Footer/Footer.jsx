@@ -30,7 +30,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <div className="footer">
+    <footer className="footer">
       <div style={{ height: `${svgHeight}px` }} className="w-full relative">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -48,6 +48,6 @@ export default function Footer() {
       {pageWidth >= 1320 && <FooterDesktop />}
       {pageWidth < 1320 && pageWidth >= 970 && <FooterLaptop />}
       {pageWidth < 970 && <FooterMobile />}
-    </div>
+    </footer>
   );
 }
