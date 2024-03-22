@@ -23,10 +23,6 @@ const page = () => {
             Informatii turisti
           </h1>
 
-          <p className="text-xl mt-4 mb-10 font-semibold text-gray-700">
-            Atractii si obiective turistice in Brasov
-          </p>
-
           <Card />
         </section>
       )}
