@@ -1,10 +1,10 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Loading from "@/components/Loading";
 import SectionCarousel from "@/components/Homepage/SectionCarousel";
 import SectionInstitutions from "@/components/Homepage/SectionInstitutions";
 import SectionTariffs from "@/components/Homepage/SectionTariffs";
-import BusLines from "@/components/Homepage/SectionLines";
+import SectionLines from "@/components/Homepage/SectionLines";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -37,6 +37,9 @@ const Home = () => {
     return () => window.removeEventListener("resize", handleHeightResize);
   }, []);
 
+  const buslinesRef = useRef(null);
+  const tariffsRef = useRef(null);
+
   return (
     <>
       {loading && pageHeight ? (
@@ -56,10 +59,13 @@ const Home = () => {
                 : { height: "100svh" }
             }
           >
-            <SectionCarousel />
+            <SectionCarousel
+              buslinesRef={buslinesRef}
+              tariffsRef={tariffsRef}
+            />
           </section>
-          <BusLines />
-          <SectionTariffs />
+          <SectionLines buslinesRef={buslinesRef} />
+          <SectionTariffs tariffsRef={tariffsRef} />
           <SectionInstitutions />
         </main>
       )}

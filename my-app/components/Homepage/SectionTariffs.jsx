@@ -1,9 +1,12 @@
 import Link from "next/link";
 import TariffCard from "./TariffCard";
 
-export default function SectionTariffs() {
+export default function SectionTariffs({ tariffsRef }) {
   return (
-    <section className="flex flex-col justify-center items-center bg-zinc-700 shadow-xl w-full py-10">
+    <section
+      ref={tariffsRef}
+      className="flex flex-col justify-center items-center bg-zinc-700 shadow-xl w-full py-[100px]"
+    >
       <div className="flex flex-col container">
         <h2 className="text-white text-3xl font-semibold mb-10">
           Cumpara Un Bilet Sau Abonament

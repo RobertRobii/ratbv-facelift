@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-const BusLines = () => {
+const SectionLines = ({ buslinesRef }) => {
   const data = [
     {
       number: "1",
@@ -91,7 +91,10 @@ const BusLines = () => {
   let isMobile = width <= 768;
 
   return (
-    <section className="relative z-10 flex flex-col items-center bg-white">
+    <section
+      ref={buslinesRef}
+      className="relative z-10 flex flex-col items-center bg-white"
+    >
       <div className="bg-gradient-to-b from-gray-400 to-white h-[60px] w-full"></div>
       <div className="flex flex-col bg-white w-full container mt-10">
         <h2 className="home-h2">Linii RATBV</h2>
@@ -107,7 +110,7 @@ const BusLines = () => {
                     href={`/lines/${dataItem.number}`}
                     key={dataItem.number}
                   >
-                    <div className="flex flex-col lg:flex-row justify-center items-center text-center text-white border w-[140px] h-[200px] lg:w-[380px] lg:h-[100px] rounded-lg bg-accent py-3 cursor-pointer hover:scale-105 hover:bg-white hover:text-accent hover:border-accent transition-all duration-300">
+                    <div className="flex flex-col lg:flex-row justify-center items-center text-center text-white border w-[145px] h-[200px] lg:w-[380px] lg:h-[100px] rounded-lg bg-accent py-3 cursor-pointer hover:scale-105 hover:bg-white hover:text-accent hover:border-accent transition-all duration-300">
                       <h1 className="bg-white px-3 py-1 rounded-lg text-accent font-semibold mr-0 lg:mr-2 lg:ml-3 mb-2 lg:mb-0 text-xl border border-accent">
                         {dataItem.number}
                       </h1>
@@ -140,4 +143,4 @@ const BusLines = () => {
   );
 };
 
-export default BusLines;
+export default SectionLines;

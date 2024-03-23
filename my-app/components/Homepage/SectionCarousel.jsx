@@ -2,7 +2,7 @@ import Carousel from "@/components/Carousel";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
-export default function SectionCarousel() {
+export default function SectionCarousel({ buslinesRef, tariffsRef }) {
   const slides = [
     "https://picsum.photos/id/15/2560/1440",
     "https://picsum.photos/id/16/2560/1440",
@@ -41,12 +41,22 @@ export default function SectionCarousel() {
             Alternativa Verde Și Rapidă A Brașovenilor
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-between items-center">
-            <button className="flex items-center gap-3 bg-accent rounded-xl text-white text-lg shadow-lg transition hover:bg-accent/50 py-2 px-5">
-              <Link href="#">Vezi liniile</Link>
+            <button
+              onClick={() =>
+                buslinesRef.current?.scrollIntoView({ behavior: "smooth" })
+              }
+              className="flex items-center gap-3 bg-accent rounded-xl text-white text-lg shadow-lg transition hover:bg-accent/50 py-2 px-5"
+            >
+              Vezi liniile
               <FaArrowRight />
             </button>
-            <button className="flex items-center gap-3 bg-transparent border border-2 border-accent rounded-xl text-accent text-lg shadow-lg transition hover:bg-accent hover:text-white py-2 px-5">
-              <Link href="#">Vezi Tarifele</Link>
+            <button
+              onClick={() =>
+                tariffsRef.current?.scrollIntoView({ behavior: "smooth" })
+              }
+              className="flex items-center gap-3 bg-transparent border border-2 border-accent rounded-xl text-accent text-lg shadow-lg transition hover:bg-accent hover:text-white py-2 px-5"
+            >
+              Vezi Tarifele
               <FaArrowRight />
             </button>
           </div>
