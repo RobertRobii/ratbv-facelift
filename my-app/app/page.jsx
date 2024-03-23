@@ -1,10 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
 import Loading from "@/components/Loading";
-import SectionLines from "@/components/Homepage/SectionLines";
 import SectionCarousel from "@/components/Homepage/SectionCarousel";
 import SectionInstitutions from "@/components/Homepage/SectionInstitutions";
 import SectionTariffs from "@/components/Homepage/SectionTariffs";
+import BusLines from "@/components/Homepage/SectionLines";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -58,7 +58,7 @@ const Home = () => {
           >
             <SectionCarousel />
           </section>
-          <SectionLines />
+          <BusLines />
           <SectionTariffs />
           <SectionInstitutions />
         </main>
