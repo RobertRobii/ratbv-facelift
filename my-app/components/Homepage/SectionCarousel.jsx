@@ -1,5 +1,6 @@
 import Carousel from "@/components/Carousel";
 import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa";
 
 export default function SectionCarousel() {
   const slides = [
@@ -33,18 +34,20 @@ export default function SectionCarousel() {
       <div className="absolute z-[1] min-h-svh bg-black/50 lg:bg-inherit lg:bg-gradient-to-r from-zinc-900 to-transparent w-full"></div>
       <div className="relative container z-10 w-full">
         <div className="flex flex-col justify-center lg:w-fit">
-          <h1 className="flex flex-col text-7xl text-white drop-shadow-xl text-center lg:text-left py-3">
+          <h1 className="flex flex-col text-7xl text-white font-semibold drop-shadow-2xl text-center lg:text-left py-3">
             Bun Venit, <span className="pt-3">Portalul RATBV</span>
           </h1>
           <p className="text-white text-xl text-center lg:text-left mb-12">
             Alternativa Verde Și Rapidă A Brașovenilor
           </p>
-          <div className="flex justify-between items-center">
-            <button className="bg-accent rounded-xl text-white text-lg shadow-lg transition hover:bg-accent/50 py-2 px-5">
+          <div className="flex flex-col sm:flex-row gap-6 justify-between items-center">
+            <button className="flex items-center gap-3 bg-accent rounded-xl text-white text-lg shadow-lg transition hover:bg-accent/50 py-2 px-5">
               <Link href="#">Vezi liniile</Link>
+              <FaArrowRight />
             </button>
-            <button className="bg-transparent border border-accent rounded-xl text-accent text-lg shadow-lg transition hover:bg-accent hover:text-white py-2 px-5">
+            <button className="flex items-center gap-3 bg-transparent border border-2 border-accent rounded-xl text-accent text-lg shadow-lg transition hover:bg-accent hover:text-white py-2 px-5">
               <Link href="#">Vezi Tarifele</Link>
+              <FaArrowRight />
             </button>
           </div>
         </div>
