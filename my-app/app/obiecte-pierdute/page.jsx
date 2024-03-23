@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Loading from "@/components/Loading";
+import BusLines from "@/components/BusLines";
 
 const page = () => {
   const [loading, setLoading] = useState(true);
@@ -61,6 +62,8 @@ const page = () => {
               apoi depus la Biroul de obiecte pierdute.
             </p>
           </div>
+
+          <BusLines />
         </section>
       )}
     </div>
