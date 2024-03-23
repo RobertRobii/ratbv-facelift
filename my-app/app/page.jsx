@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import Loading from "@/components/Loading";
 import SectionLines from "@/components/Homepage/SectionLines";
 import SectionCarousel from "@/components/Homepage/SectionCarousel";
+import SectionInstitutions from "@/components/Homepage/SectionInstitutions";
+import SectionTariffs from "@/components/Homepage/SectionTariffs";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -41,8 +43,10 @@ const Home = () => {
         <Loading />
       ) : (
         <main>
-          {pageWidth > 768 && (
+          {pageWidth >= 768 ? (
             <div className="relative z-10 bg-gray-400 h-[93px] w-full"></div>
+          ) : (
+            <div className="relative z-10 bg-gray-400 h-[82px] w-full"></div>
           )}
           <section
             className="relative flex flex-col justify-center items-center"
@@ -55,6 +59,8 @@ const Home = () => {
             <SectionCarousel />
           </section>
           <SectionLines />
+          <SectionTariffs />
+          <SectionInstitutions />
         </main>
       )}
     </>

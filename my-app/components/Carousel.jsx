@@ -1,7 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-// import { GrNext } from "react-icons/gr";
-// import { GrPrevious } from "react-icons/gr";
 
 export default function Carousel({
   children: slides,
