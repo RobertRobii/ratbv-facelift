@@ -10,7 +10,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
-import Link from "next/link";
 
 const news = [
   {
@@ -75,6 +74,9 @@ const Noutati = () => {
     return description;
   };
 
+  const newsRef = useRef(null);
+  const [selectedNews, setSelectedNews] = useState(null);
+
   return (
     <main>
       {loading ? (
@@ -124,7 +126,16 @@ const Noutati = () => {
                       {truncateDescription(item.description)}
                     </p>
                     <button className="text-medium lg:text-xl text-accent mt-2 lg:mt-4 hover:underline">
-                      <Link href="#">Citeste mai mult →</Link>
+                      <button
+                        onClick={() => {
+                          setSelectedNews(item);
+                          newsRef.current?.scrollIntoView({
+                            behavior: "smooth",
+                          });
+                        }}
+                      >
+                        Citeste mai mult →
+                      </button>
                     </button>
                   </div>
                 </SwiperSlide>
@@ -136,6 +147,16 @@ const Noutati = () => {
                 <span ref={progressContent}></span>
               </div>
             </Swiper>
+          </div>
+
+          <div className="mt-10" ref={newsRef}>
+            {selectedNews && (
+              <>
+                <h1 className="text-sm lg:text-xl font-semibold text-gray-700 mb-2">
+                  {selectedNews.title}
+                </h1>
+              </>
+            )}
           </div>
         </section>
       )}
