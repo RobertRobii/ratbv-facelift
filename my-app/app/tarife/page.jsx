@@ -5,11 +5,6 @@ import Loading from "@/components/Loading";
 import DesktopPricingTable from "@/components/Tarife/DesktopPricingTable";
 import MobilePricing from "@/components/Tarife/MobilePricing";
 
-// Framer Motion
-import { motion } from "framer-motion";
-import { fadeIn } from "@/variants";
-import { useInView } from "react-intersection-observer";
-
 const Tarife = () => {
   const [loading, setLoading] = useState(true);
   const [width, setWidth] = useState(null);
@@ -41,9 +36,9 @@ const Tarife = () => {
         <Loading />
       ) : (
         <section className="container mx-auto pt-[100px] md:pt-[120px] pb-[100px]">
-          <motion.h1 className="mx-auto md:mx-0 text-xl text-center mb-5 text-white bg-accent px-4 py-2 rounded-lg w-[250px]">
+          <h1 className="mx-auto md:mx-0 text-xl text-center mb-5 text-white bg-accent px-4 py-2 rounded-lg w-[250px]">
             Planul tarifar integrat
-          </motion.h1>
+          </h1>
           <p className="text-center md:text-left text-gray-500 mb-4 font-semibold text-justify">
             Valabil din 24.02.2023 pe traseele operate de RATBV S.A. din
             Municipiul Brasov si Zona Metropolitana Brasov

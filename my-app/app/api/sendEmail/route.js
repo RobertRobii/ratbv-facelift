@@ -18,7 +18,7 @@ export async function POST(request) {
       from: email,
       to: process.env.EMAIL_USERNAME,
       subject: `New Message from ${name}`,
-      text: `${message}`,
+      text: message,
     };
 
     let info = await transporter.sendMail(mailOptions);
