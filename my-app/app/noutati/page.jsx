@@ -11,45 +11,7 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
 
-const news = [
-  {
-    image: "/images/carousel/autobuz-te1-brasov.jpg",
-    date: "22.03.2024",
-    title:
-      "Orare valabile din 16 octombrie 2023 pentru transportul special al elevilor!",
-    description:
-      "De luni, 25 martie 2024, autobuzul care deservește traseul de transport special pentru elevi TE 1 (Noua - Saturn - Livada Poștei - Șirul Beethoven) va opri și în stația ”Cometei”, de pe Bulevardul Saturn, la ora 07:18.",
-  },
-  {
-    image: "/images/carousel/autobuz-36-brasov.jpg",
-    date: "22.03.2024",
-    title: "Modificare importanta pentru traseul liniei 36!",
-    description:
-      "Pentru o mai bună asigurare a cerințelor de mobilitate ale călătorilor din zona cartierului Tractorul, RATBV va extinde de luni, 25 martie 2024 traseul liniei 36, acesta urmând a deservi încă patru stații nou înființate.",
-  },
-  {
-    image: "/images/carousel/massif-brasov.jpg",
-    date: "06.03.2024",
-    title: "Informatii transport festival MASSIF!",
-    description:
-      "Mii de iubitori ai sporturilor de iarnă, muzicii, aventurii, distracției, dar și a experiențelor exclusiviste se vor aduna săptămâna viitoare la cea de a doua ediție a celui mai mare eveniment muzical și de entertainment organizat într-o stațiune montană",
-  },
-  {
-    image: "/images/carousel/autobuz-biciclete-brasov.jpg",
-    date: "27.02.2024",
-    title: "RATBV a crescut capacitatea de transport la 60 de biciclete/oră!",
-    description:
-      "Având în vedere condițiile meteo favorabile, dar și solicitările primite din partea bicicliștilor, operatorul de transport RATBV va relua, de mâine, transportul bicicletelor în Poiana Brașov.",
-  },
-  {
-    image: "/images/carousel/compostor-brasov.jpg",
-    date: "21.02.2024",
-    title:
-      "Au fost remediate problemele tehnice din sistemul de eliberare a titlurilor de călătorie!",
-    description:
-      "Defecțiunea tehnică a fost remediată, sistemele de ticketing și de monitorizare funcționează. Se pot elibera la punctele de vânzare toate tipurile de titluri de călătorie. Panourile de informare din stații, complet operaționale.",
-  },
-];
+import { news } from "@/app/data/newsData";
 
 const Noutati = () => {
   const [loading, setLoading] = useState(true);
@@ -76,6 +38,7 @@ const Noutati = () => {
 
   const newsRef = useRef(null);
   const [selectedNews, setSelectedNews] = useState(null);
+  const carouselRef = useRef(null);
 
   return (
     <main>
@@ -83,7 +46,10 @@ const Noutati = () => {
         <Loading />
       ) : (
         <section className="container mx-auto pt-[100px] md:pt-[120px] pb-[100px]">
-          <h1 className="mx-auto md:mx-0 text-xl text-center mb-5 text-white bg-accent px-4 py-2 rounded-lg w-[250px]">
+          <h1
+            ref={carouselRef}
+            className="mx-auto md:mx-0 text-xl text-center mb-5 text-white bg-accent px-4 py-2 rounded-lg w-[250px]"
+          >
             Noutati
           </h1>
           <div className="h-[350px] lg:h-[570px] mt-[80px] lg:mt-[100px]">
@@ -104,7 +70,7 @@ const Noutati = () => {
               className="mySwiper"
             >
               {news.map((item) => (
-                <SwiperSlide>
+                <SwiperSlide key={item.title}>
                   <div className="w-[200px] lg:w-[500px] lg:h-[250px] mx-auto">
                     <div className="w-[200px] lg:w-[500px] h-[140px] lg:h-[250px] mx-auto">
                       <Image
@@ -125,17 +91,16 @@ const Noutati = () => {
                     <p className="hidden lg:block text-gray-500">
                       {truncateDescription(item.description)}
                     </p>
-                    <button className="text-medium lg:text-xl text-accent mt-2 lg:mt-4 hover:underline">
-                      <button
-                        onClick={() => {
-                          setSelectedNews(item);
-                          newsRef.current?.scrollIntoView({
-                            behavior: "smooth",
-                          });
-                        }}
-                      >
-                        Citeste mai mult →
-                      </button>
+                    <button
+                      onClick={() => {
+                        setSelectedNews(item);
+                        newsRef.current?.scrollIntoView({
+                          behavior: "smooth",
+                        });
+                      }}
+                      className="text-medium lg:text-xl text-accent mt-2 lg:mt-4 hover:underline"
+                    >
+                      Citeste mai mult →
                     </button>
                   </div>
                 </SwiperSlide>
@@ -152,9 +117,29 @@ const Noutati = () => {
           <div className="mt-10" ref={newsRef}>
             {selectedNews && (
               <>
-                <h1 className="text-sm lg:text-xl font-semibold text-gray-700 mb-2">
+                <h1 className="text-lg lg:text-xl text-center md:text-left font-semibold text-gray-700 mb-2 pt-[100px]">
                   {selectedNews.title}
                 </h1>
+                <p className="text-gray-600 text-justify">
+                  {selectedNews.fullDescription
+                    .split("\n")
+                    .map((paragraph, index) => (
+                      <div key={index}>
+                        {paragraph}
+                        <br />
+                      </div>
+                    ))}
+                </p>
+                <button
+                  className="text-accent bg-transparent border border-accent w-[220px] px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition-all duration-200 mt-10"
+                  onClick={() => {
+                    carouselRef.current?.scrollIntoView({
+                      behavior: "smooth",
+                    });
+                  }}
+                >
+                  Vezi mai multe stiri
+                </button>
               </>
             )}
           </div>
