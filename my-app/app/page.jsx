@@ -5,6 +5,7 @@ import SectionCarousel from "@/components/Homepage/SectionCarousel";
 import SectionInstitutions from "@/components/Homepage/SectionInstitutions";
 import SectionTariffs from "@/components/Homepage/SectionTariffs";
 import SectionLines from "@/components/Homepage/SectionLines";
+import SectionAboutUs from "@/components/Homepage/SectionAboutUs";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -66,6 +67,7 @@ const Home = () => {
           </section>
           <SectionLines buslinesRef={buslinesRef} />
           <SectionTariffs tariffsRef={tariffsRef} />
+          <SectionAboutUs />
           <SectionInstitutions />
         </main>
       )}
