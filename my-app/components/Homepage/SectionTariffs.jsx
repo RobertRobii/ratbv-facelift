@@ -23,7 +23,7 @@ export default function SectionTariffs({ tariffsRef }) {
             pText="Incarca gratuit cardul de elevi."
             btnText="Incarca cardul acum..."
             link="https://elevi.ratbv.ro/"
-            elevi={true}
+            isElevi={true}
           />
           <TariffCard
             title="Descarca aplicatia 24-pay"

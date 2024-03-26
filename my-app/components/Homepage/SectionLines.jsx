@@ -102,7 +102,7 @@ const SectionLines = ({ buslinesRef }) => {
       <div className="container mx-auto py-10">
         <div className="flex flex-col items-center">
           <div className="relative">
-            <div className="flex flex-wrap justify-between gap-x-10 gap-y-10 mb-10">
+            <div className="flex flex-wrap sm:justify-between justify-center gap-x-10 gap-y-10 mb-10">
               {data
                 .slice(0, showAll ? data.length : isMobile ? 6 : 9)
                 .map((dataItem) => (
