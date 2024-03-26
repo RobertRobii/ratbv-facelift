@@ -1,7 +1,6 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
-import exitIcon from "@/public/svg/Exit_icon.svg";
+import { IoMdClose } from "react-icons/io";
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -152,12 +151,10 @@ export default function NavbarMenu({ setOpenMenu, handleOpenMenu, pageWidth }) {
       >
         <div className="flex justify-between border-solid border-b border-[#00B906] pb-3">
           <h2 className="font-semibold text-2xl text-gray-700">Meniu</h2>
-          <Image
-            src={exitIcon}
-            width={30}
-            height="auto"
+          <IoMdClose
+            className="cursor-pointer text-gray-700 hover:text-gray-500 transition w-[30px] h-[30px]"
             onClick={handleOpenMenu}
-            alt="Exit"
+            alt="Iesi"
           />
         </div>
         <div className="flex flex-col gap-5 py-5">

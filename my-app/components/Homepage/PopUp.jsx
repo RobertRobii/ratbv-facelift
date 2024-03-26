@@ -14,7 +14,7 @@ export default function PopUp({ setIsOpen }) {
         onClick={(e) => e.stopPropagation()}
       >
         <IoMdClose
-          className="absolute top-3 right-3 cursor-pointer hover:text-gray-600 w-[30px] h-[30px]"
+          className="absolute top-3 right-3 cursor-pointer text-gray-700 hover:text-gray-500 transition w-[30px] h-[30px]"
           onClick={() => setIsOpen(false)}
         />
         <h3 className="flex flex-col font-semibold text-center text-2xl mb-6">

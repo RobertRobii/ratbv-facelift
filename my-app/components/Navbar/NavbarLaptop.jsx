@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import ratbvLogo from "@/public/images/RATBV_logo.png";
-import menuIcon from "@/public/svg/Menu_icon.svg";
+import { TfiMenuAlt } from "react-icons/tfi";
 import NavbarMenu from "./NavbarMenu";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
@@ -93,12 +93,10 @@ export default function NavbarLaptop({ width, scrollY }) {
                 />
               </label>
             </form>
-            <Image
-              src={menuIcon}
-              width={30}
-              className="self-center"
+            <TfiMenuAlt
+              className="self-center cursor-pointer text-gray-700 hover:text-gray-600 transition w-[32px] h-[32px]"
               onClick={handleOpenMenu}
-              alt="Menu"
+              alt="Meniu"
             />
           </div>
         </div>
