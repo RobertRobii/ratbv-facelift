@@ -21,7 +21,11 @@ export default function TariffCard({
   }
 
   return (
-    <div className="flex flex-col items-center justify-between border border-accent border-2 rounded-xl text-white shadow-lg md:w-96 w-60 min-h-80 p-5">
+    <div
+      className={`flex flex-col items-center justify-between border border-accent border-2 rounded-xl text-white shadow-lg md:text-left text-center ${
+        !isOpen && "hover:scale-[1.01]"
+      } hover:shadow-2xl transition ease-in-out md:w-96 w-72 min-h-80 p-5`}
+    >
       <h3 className="text-xl mb-5">{title}</h3>
       {image ? (
         <Image
@@ -39,11 +43,12 @@ export default function TariffCard({
       <div className="flex flex-col container">
         <p>{pText}</p>
         {link ? (
-          <button className="bg-accent rounded-xl transition hover:bg-accent/50 px-3 py-2 mt-5 w-full">
-            <Link href={link} target="_blank" className="w-full">
+          <Link href={link} target="_blank" className="w-full">
+            <button className="bg-accent rounded-xl transition hover:bg-accent/50 px-3 py-2 mt-5 w-full">
+              {" "}
               {btnText}
-            </Link>
-          </button>
+            </button>
+          </Link>
         ) : (
           <button
             className="bg-accent rounded-xl transition hover:bg-accent/50 px-3 py-2 mt-5 w-full"

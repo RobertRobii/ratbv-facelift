@@ -1,9 +1,18 @@
+"use client";
 import { IoMdClose } from "react-icons/io";
 import { SiApple } from "react-icons/si";
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect } from "react";
 
 export default function PopUp({ setIsOpen }) {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   return (
     <div
       className="fixed z-20 flex justify-center items-center inset-0 backdrop-blur-sm h-dvh w-dvw p-5"

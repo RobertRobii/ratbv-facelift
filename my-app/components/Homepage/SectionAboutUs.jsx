@@ -3,11 +3,11 @@ import Link from "next/link";
 
 export default function SectionAboutUs() {
   return (
-    <section className="flex flex-col items-center shadow-inner py-[100px]">
+    <section className="flex flex-col items-center shadow-inner border border-bottom shadow-lg py-[100px]">
       <div className="flex lg:flex-row flex-col justify-between items-center gap-16 container">
-        <div className="flex flex-col">
-          <h2 className="home-h2 mb-3">Despre Noi</h2>
-          <p className="text-justify md:leading-loose leading-relaxed">
+        <div className="flex flex-col md:px-0 px-3">
+          <h2 className="home-h2 mb-5">Despre Noi</h2>
+          <p className="text-justify md:leading-loose leading-relaxed py-1">
             Cu o tradiție îndelungată și o prezență solidă în peisajul
             transportului public din Brașov, RATBV este un pilon vital al
             mobilității urbane. Înființată pentru a răspunde nevoilor de
@@ -18,7 +18,7 @@ export default function SectionAboutUs() {
             o experiență de călătorie plăcută și la dezvoltarea sustenabilă a
             orașului. Pentru a afla mai multe despre angajamentul lor față de
             comunitate și viziunea pentru viitor,{" "}
-            <Link href="#" className="underline text-accent">
+            <Link href="/despre-noi" className="underline text-accent">
               citește mai mult...
             </Link>
           </p>

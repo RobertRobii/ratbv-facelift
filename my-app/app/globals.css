@@ -53,7 +53,7 @@ main {
 }
 
 .footer {
-  @apply flex flex-col relative;
+  @apply flex flex-col clear-both relative;
 }
 
 .footer-h2 {
