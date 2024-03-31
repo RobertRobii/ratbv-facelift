@@ -32,12 +32,12 @@ export default function SectionTariffs({ tariffsRef }) {
             image="/images/24Pay.png"
           />
         </div>
-        <div className="flex flex-col items-center text-white mt-12">
-          <h3 className="text-xl font-semibold">
+        <div className="flex flex-col justify-center items-center text-white mt-14">
+          <h3 className="text-xl font-semibold mb-4">
             Mai multe informatii despre preturi
           </h3>
           <Link href="/tarife">
-            <button className="bg-transparent border border-accent border-2 rounded-xl text-accent transition hover:text-white hover:bg-accent px-3 py-2 mt-4 w-fit">
+            <button className="bg-transparent border border-accent border-2 rounded-xl text-accent transition hover:text-white hover:bg-accent hover:shadow-lg px-3 py-2 w-fit">
               Vezi tabelul cu tarifele...
             </button>
           </Link>
