@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function SectionAboutUs() {
   return (
-    <section className="flex flex-col items-center shadow-inner border border-bottom shadow-lg py-[100px]">
+    <section className="flex flex-col items-center shadow-lg py-[100px]">
       <div className="flex lg:flex-row flex-col justify-between items-center gap-16 container">
         <div className="flex flex-col md:px-0 px-3">
           <h2 className="home-h2 mb-5">Despre Noi</h2>

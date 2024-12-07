@@ -5,10 +5,10 @@ export default function SectionTariffs({ tariffsRef }) {
   return (
     <section
       ref={tariffsRef}
-      className="flex flex-col justify-center items-center bg-zinc-700 shadow-xl w-full py-[100px]"
+      className="flex flex-col justify-center items-center w-full py-[100px]"
     >
       <div className="flex flex-col container">
-        <h2 className="text-white text-3xl font-semibold mb-10">
+        <h2 className="text-3xl font-semibold mb-10">
           Cumpara Un Bilet Sau Abonament
         </h2>
         <div className="flex flex-wrap items-center xl:justify-between justify-center gap-12">
@@ -32,7 +32,7 @@ export default function SectionTariffs({ tariffsRef }) {
             image="/images/24Pay.png"
           />
         </div>
-        <div className="flex flex-col justify-center items-center text-white mt-14">
+        <div className="flex flex-col justify-center items-center mt-14">
           <h3 className="text-xl font-semibold mb-4">
             Mai multe informatii despre preturi
           </h3>

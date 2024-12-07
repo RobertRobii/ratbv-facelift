@@ -22,9 +22,9 @@ export default function TariffCard({
 
   return (
     <div
-      className={`flex flex-col items-center justify-between border border-accent border-2 rounded-xl text-white shadow-lg md:text-left text-center ${
+      className={`flex flex-col items-center justify-between border border-accent border-2 rounded-xl shadow-lg md:text-left text-center ${
         !isOpen && "hover:scale-[1.01]"
-      } hover:shadow-2xl hover:bg-zinc-800 transition ease-in-out md:w-96 w-72 min-h-80 p-5`}
+      } transition ease-in-out md:w-96 w-72 min-h-80 p-5`}
     >
       <h3 className="text-xl mb-5">{title}</h3>
       {image ? (
