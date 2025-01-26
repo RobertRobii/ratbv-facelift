@@ -67,7 +67,8 @@ export default function FooterMobile() {
           </p>
         </a>
         <p className="text-slate-200 text-sm">
-          Copyright @{new Date().getFullYear()}
+          Copyright © {new Date().getFullYear()}. Robert & Darian. All Rights
+          Reserved
         </p>
       </div>
     </div>

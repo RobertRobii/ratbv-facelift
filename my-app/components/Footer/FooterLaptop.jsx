@@ -69,7 +69,8 @@ export default function FooterLaptop() {
       </div>
       <div className="flex justify-center">
         <p className="flex-row text-slate-200 text-sm">
-          Copyright @{new Date().getFullYear()}
+          Copyright © {new Date().getFullYear()}. Robert & Darian. All Rights
+          Reserved
         </p>
       </div>
     </div>
